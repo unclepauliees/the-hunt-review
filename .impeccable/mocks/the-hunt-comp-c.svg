@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#171B1B"/>
+  <text x="72" y="76" fill="#B6875B" font-family="Georgia, serif" font-size="17" letter-spacing="4">PRESENTED BY NOWTHIS x AUDIBLE</text>
+  <image href="assets/keyart-16x9.jpg" x="72" y="112" width="1456" height="785" preserveAspectRatio="xMidYMid slice"/>
+  <rect x="72" y="700" width="1456" height="197" fill="#171B1B" opacity=".82"/>
+  <image href="assets/tagline-audio-2line.svg" x="116" y="738" width="370" height="95" preserveAspectRatio="xMinYMid meet"/>
+  <text x="116" y="861" fill="#E4BD96" font-family="Georgia, serif" font-size="15" letter-spacing="4">CAMPAIGN KICK-OFF 2026</text>
+  <line x1="680" y1="800" x2="1450" y2="800" stroke="#E4BD96" stroke-opacity=".34"/>
+  <g fill="#390F10" stroke="#E4BD96"><circle cx="720" cy="800" r="15" fill="#BC0000"/><circle cx="910" cy="800" r="15"/><circle cx="1100" cy="800" r="15"/><circle cx="1290" cy="800" r="15"/><circle cx="1450" cy="800" r="15"/></g>
+  <g fill="#B6875B" font-family="Georgia, serif" font-size="12" letter-spacing="2"><text x="690" y="842">ENTER</text><text x="866" y="842">THE MAP</text><text x="1054" y="842">THE FEAST</text><text x="1249" y="842">THE HUNT</text><text x="1401" y="842">REVEAL</text></g>
+</svg>

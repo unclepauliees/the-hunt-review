@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#171B1B"/>
+  <image href="assets/keyart-16x9.jpg" x="470" y="36" width="1094" height="928" preserveAspectRatio="xMidYMid slice"/>
+  <rect x="0" y="0" width="510" height="1000" fill="#263435"/>
+  <image href="assets/env-envelope.jpg" x="0" y="0" width="510" height="1000" preserveAspectRatio="xMidYMid slice" opacity=".25"/>
+  <rect x="0" y="0" width="510" height="1000" fill="#171B1B" opacity=".6"/>
+  <text x="64" y="78" fill="#B6875B" font-family="Georgia, serif" font-size="16" letter-spacing="4">NOWTHIS x AUDIBLE</text>
+  <text x="64" y="390" fill="#E4BD96" font-family="Georgia, serif" font-size="72" letter-spacing="8">THE</text><text x="64" y="474" fill="#E4BD96" font-family="Georgia, serif" font-size="72" letter-spacing="8">HUNT</text>
+  <text x="64" y="532" fill="#B6875B" font-family="Georgia, serif" font-size="17" letter-spacing="4">CAMPAIGN KICK-OFF 2026</text>
+  <image href="assets/tagline-audio-2line.svg" x="64" y="575" width="330" height="90" preserveAspectRatio="xMinYMid meet"/>
+  <line x1="64" y1="770" x2="420" y2="770" stroke="#E4BD96" stroke-opacity=".35"/>
+  <g font-family="Georgia, serif" font-size="13" fill="#E4BD96"><text x="64" y="815">ENTER</text><text x="167" y="815">DISCOVER</text><text x="294" y="815">REVEAL</text></g>
+  <g stroke="#E4BD96"><circle cx="80" cy="855" r="12" fill="#BC0000"/><circle cx="197" cy="855" r="12" fill="#390F10"/><circle cx="320" cy="855" r="12" fill="#390F10"/></g>
+</svg>

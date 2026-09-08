@@ -1,0 +1,13 @@
+{
+  "regions": [
+    { "id": "hero-keyart", "kind": "image", "grid": "A0:J9", "note": "Untouched licensed full key art plate; CSS may only apply uniform vertical translation" },
+    { "id": "field-guide-panel", "kind": "chrome", "grid": "A0:D9", "container": true, "note": "Narrow translucent dark-to-clear information panel" },
+    { "id": "presented-by", "kind": "text", "grid": "A0:E0", "note": "Small tracked presentation line in originals gold" },
+    { "id": "campaign-date", "kind": "text", "grid": "A6:D6", "note": "Compact tracked campaign date" },
+    { "id": "audio-tagline", "kind": "image", "grid": "A7:E7", "note": "Supplied vector A New Audio Thriller tagline" },
+    { "id": "journey-line", "kind": "chrome", "grid": "A8:D8", "note": "Hairline joining three journey states" },
+    { "id": "journey-labels", "kind": "text", "grid": "A8:D8", "note": "Enter, Discover, Reveal labels" },
+    { "id": "journey-seals", "kind": "control", "grid": "A9:D9", "note": "Three wax-seal journey marks with first active" },
+    { "id": "global-map-rail", "kind": "chrome", "grid": "J0:J9", "note": "Fixed right-edge page progress line and seal marks" }
+  ]
+}

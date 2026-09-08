@@ -1,0 +1,77 @@
+/*
+ * BRAND COMPLIANCE
+ * Dracula and Mina always appear together and only inside complete key art.
+ * Talent appears only in acts 1 and 14, scaled together and never independently transformed.
+ * The US title lockup remains focal; cast names stay clean and visible with every key-art use.
+ * Logo on art requires its supplied darken-blend shadow plate.
+ * Key art is never filtered, recolored, blended, or transformed beyond uniform Y translation.
+ * Tagline copy is fixed. Audible orange is reserved for the master Audible logo.
+ */
+
+export type Card = { title: string; badge: string; body: string; image: string; fit?: "cover" | "contain" };
+export type BulletGroup = { label: string; items: string[] };
+export type Act = {
+  id: string;
+  index: number;
+  chapter: string;
+  kind: "hero" | "narrative" | "carousel" | "venue" | "openItems";
+  eyebrow?: string;
+  headline: string;
+  body?: string[];
+  bullets?: BulletGroup[];
+  cards?: Card[];
+  background: "keyart" | "bg-02" | "bg-03" | "bg-04";
+  image?: string;
+  stampIndex?: number;
+  slideLayout: "hero" | "split" | "full-image-caption" | "two-column" | "grid-4" | "stat-block" | "checklist";
+};
+
+export const acts: Act[] = [
+  { id: "cover", index: 1, chapter: "Presented by NowThis x Audible", kind: "hero", eyebrow: "PRESENTED BY NOWTHIS x AUDIBLE", headline: "THE HUNT", body: ["CAMPAIGN KICKOFF EXPERIENCE 2026"], background: "keyart", slideLayout: "hero" },
+  { id: "structure", index: 2, chapter: "Structure", kind: "narrative", headline: "How The\nNight Unfolds", background: "bg-02", slideLayout: "two-column", bullets: [
+    { label: "PART I — THE HUNT", items: ["Guests enter The Hunt and explore Dracula through hidden journal entries, immersive audio, and interactive discoveries throughout the venue."] },
+    { label: "PART II — THE REVEAL", items: ["One final discovery completes The Hunt and leads guests to Audible, where they can continue listening to uncover how Dracula ends."] },
+  ] },
+  { id: "premise", index: 3, chapter: "One Night Only", kind: "narrative", headline: "One Night Only", background: "bg-03", image: "env-portal.jpg", slideLayout: "split", body: ["For one night only, Audible transforms a chic New York venue into The Hunt. Drawn from the haunting pages of Dracula, the evening blends decadent dining, gothic luxury, and interactive storytelling into New York's most coveted invitation.", "A stylish New York venue is transformed into Dracula's dining room through candlelight, dramatic tablescapes, and lavish details inspired by gothic luxury. Fog creeping over the floors, dramatic lighting, and luxurious gothic touches leave no doubt where this evening is taking place."] },
+  { id: "arrival", index: 4, chapter: "Arrival", kind: "narrative", headline: "You May Enter", background: "bg-02", image: "env-carriage.jpg", slideLayout: "full-image-caption", body: ["Guests arrive by carriage to a landmarked 1767 carriage house. The original 18th-century hitching post still stands inside. This is not a set - it is the building the story would have chosen."] },
+  { id: "entrance-design", index: 5, chapter: "Entrance Design", kind: "carousel", headline: "Building The Threshold", background: "bg-03", slideLayout: "grid-4", cards: [
+    { badge: "EXPERIENCE", title: "Arrival Environment", body: "A candlelit reception environment introduces guests to the world of Dracula through velvet drapery, portrait mirrors, florals, and the first invitation to enter.", image: "entrance-environment.png" },
+    { badge: "GUEST FLOW", title: "Floor Plan", body: "The floor plan coordinates arrival, activation queues, the feast, portraits, aura readings, the library, and the customization station across the venue.", image: "entrance-floorplan.png", fit: "contain" },
+    { badge: "PRODUCTION", title: "Entrance Build Plan", body: "The entrance elevation, materials, lighting, branded banners, florals, and modular construction details translate the threshold concept into a buildable installation.", image: "entrance-buildplan.png", fit: "contain" },
+  ] },
+  { id: "corridor", index: 6, chapter: "Threshold", kind: "narrative", headline: "Into The Castle", background: "bg-03", image: "env-corridor.jpg", slideLayout: "split", body: ["Guests step into the Count's castle through a candlelit corridor, where flickering light and dramatic drapes blur the line between reality and Dracula's world.", "Audio clips from Audible's Dracula play, letting guests know they are entering his realm. They receive a wax-sealed envelope, seemingly created in another time and place."] },
+  { id: "map", index: 7, chapter: "The Invitation", kind: "narrative", headline: "Open If You Dare", background: "bg-02", image: "env-envelope.jpg", slideLayout: "full-image-caption", body: ["Inside each wax-sealed envelope is an illustrated map that lays out the evening, providing further instructions for The Hunt. As the night unfolds, the map becomes their guide, leading them to each immersive activation where they'll uncover clues, collect stamps, and piece together Dracula's story."] },
+  { id: "dresscode", index: 8, chapter: "Guests", kind: "narrative", headline: "The Dress Code", background: "bg-03", slideLayout: "split", body: ["The Hunt invites guests to interpret Dracula through high fashion, embracing dramatic silhouettes, rich textures, and couture rooted in gothic glamour. Think modern vampire, not costume, where every look feels worthy of the front row."] },
+  { id: "menu", index: 9, chapter: "Dining", kind: "carousel", headline: "The Menu", background: "bg-03", slideLayout: "grid-4", cards: [
+    { badge: "TABLE", title: "The Grazing Table", body: "A dramatic grazing table reimagines Dracula through elevated bites featuring blood oranges, black cherries, dark chocolate, and other sophisticated nods to vampire lore. Each dish draws from iconic symbols and moments from the novel.", image: "env-grazing-table.jpg" },
+    { badge: "DRACULA", title: "Smoked Old Fashioned", body: "With blood orange.", image: "env-cocktails.jpg" },
+    { badge: "MINA", title: "Elderflower & Champagne Spritz", body: "", image: "env-cocktails.jpg" },
+    { badge: "LUCY", title: "Black Cherry Gin Cocktail", body: "", image: "env-cocktails.jpg" },
+  ] },
+  { id: "atmosphere", index: 10, chapter: "Atmosphere", kind: "narrative", headline: "The Castle\nComes To Life", background: "bg-02", image: "env-tablescape.jpg", slideLayout: "two-column", bullets: [
+    { label: "THE TABLE BECOMES THE CENTERPIECE", items: ["Lavish tablescapes overflowing with moss, florals, and candlelight", "Hidden journal pages reveal forgotten moments from the novel before the investigation begins"] },
+    { label: "THE FEAST HAS A SOUNDTRACK", items: ["A live string quartet sets the tone as guests arrive and dine", "Immersive sound design fills the space with whispers, turning pages, church bells, and wolves", "Exclusive moments from Audible's narration drift through the dining room, surrounding guests with the voices of Dracula"] },
+  ] },
+  { id: "hunt", index: 11, chapter: "The Mechanic", kind: "narrative", headline: "The Hunt For Dracula", background: "bg-03", image: "env-stamp.jpg", slideLayout: "full-image-caption", body: ["Using the map they received upon arrival, guests must visit every activation hidden throughout the venue to piece together the answer. At each stop, they uncover a new part of the story through audio, prophecy, or visual clues and receive a custom blood-red Audible stamp marking their progress.", "Each clue reveals more. Each branded stamp brings them closer. Only guests who complete the entire Hunt and collect every stamp can unlock The Midnight Revelation."] },
+  { id: "activations", index: 12, chapter: "Four Activations", kind: "carousel", headline: "Four Clues", background: "bg-03", stampIndex: 4, slideLayout: "grid-4", cards: [
+    { badge: "DECODE", title: "The Mirrors", body: "Antique mirrors conceal messages and visual illusions within their reflections. Guests must determine which reflection reveals the hidden message. The message uncovers another piece of Dracula's fate.", image: "env-mirrors.jpg" },
+    { badge: "CAPTURE", title: "The Portrait Booth", body: "Guests step inside an ornate Victorian portrait booth and become part of Dracula's world. Audio clips play as their portrait is captured. They must examine the finished portrait to uncover a hidden detail.", image: "env-portrait-booth.jpg" },
+    { badge: "DIVINE", title: "The Aura Reading", body: "A dramatic aura reading captures the energy Dracula would see in you. Your aura reveals your fate: resistant to his influence, or dangerously easy to lure in. Guests leave with an aura portrait and personalized reading.", image: "env-aura.jpg" },
+    { badge: "LISTEN", title: "Dracula's Library", body: "Guests search Dracula's library for books that unlock immersive audio. Integrated speakers create intimate listening moments. Guests must listen closely to uncover the clue hidden within.", image: "env-library.jpg" },
+  ] },
+  { id: "revelation", index: 13, chapter: "Completion", kind: "narrative", headline: "Four Clues. One Revelation.", background: "bg-02", stampIndex: 4, slideLayout: "two-column", body: ["In order to receive the final clue of the evening, guests must complete the\nfour Dracula experiences and receive their associated Audible stamps. Upon\ncompletion, guests display their stamped map and receive the final revelation."] },
+  { id: "reveal", index: 14, chapter: "The Midnight Revelation", kind: "narrative", headline: "The Reveal", background: "bg-04", image: "env-mirror-reveal.jpg", slideLayout: "full-image-caption", body: ["With all four tasks complete and their final stamp secured, guests unlock The Midnight Revelation: an ornate handheld mirror created exclusively for the evening.", "Hidden within the reflection is one final message: \"Not everything can be seen. Some things must be heard.\" A discreet QR leads guests to Audible, where they can listen to uncover Dracula's ending for themselves."] },
+  { id: "venue", index: 15, chapter: "Venue - Confirmed", kind: "venue", headline: "One if by Land, Two if by Sea", background: "bg-02", image: "env-venue-interior.jpg", slideLayout: "stat-block", body: ["17 Barrow St, New York, NY 10014", "Landmarked 1767 carriage house, formerly Aaron Burr's. Recognized for its classic menu, long history, and beautiful decor - often cited as the most romantic restaurant in New York City, and its old world touches fit the bill for Dracula.", "A barrel-vaulted stone tunnel runs from the building toward the old Hudson shoreline. Dracula arrives by sea. The passage is already there."] },
+  { id: "open-items", index: 16, chapter: "For Discussion", kind: "openItems", headline: "Open Items", background: "bg-03", slideLayout: "checklist", body: [
+    "Audio integration - when and where clips play without disrupting the dining experience. Audio is mandatory to some extent; placement needs sign-off.",
+    "Leave-behind concept - options under consideration include a chocolate heart with cherry centre, a candle, or an eternal rose. Whichever is selected must carry the QR component.",
+    "Guest flow and throughput - the aura reading and portrait booth are one-at-a-time formats. At 200 guests these require timed waves or staggered arrivals. Needs modelling.",
+    "Talent involvement - none currently scoped. Confirm whether Bailey or Purnell participation is in play.",
+    "Date, guest count, and budget band - not yet set.",
+    "Key art motion treatment - confirm brand-team approval for scroll-based parallax on the delivered key art composition.",
+  ] },
+  { id: "keyart-close", index: 17, chapter: "Listen To The Darkness", kind: "hero", headline: "Listen To The Darkness", background: "keyart", slideLayout: "hero" },
+];
+
+export const activationLabels = ["Decode", "Capture", "Divine", "Listen"];
+export const venueStats = ["130 SEATED", "200 COCKTAIL", "3 ROOMS, PIPED SOUND", "PRIVATE GARDEN", "CLOSED MONDAYS - AVAILABLE FOR PRIVATE EVENTS"];

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-08T09:18:00.000Z",
+  "title": "Design System: The Hunt",
+  "extensions": {
+    "colorMeta": {
+      "dracula-red": { "role": "primary", "displayName": "Dracula Red", "canonical": "#BC0000", "tonalRamp": ["#260000", "#4B0000", "#710000", "#970000", "#BC0000", "#D93636", "#ED8585", "#F8D6D6"] },
+      "oxblood": { "role": "primary", "displayName": "Oxblood", "canonical": "#390F10", "tonalRamp": ["#170607", "#2A0B0C", "#421213", "#651C1E", "#8A3133", "#B65D5F", "#DDA0A1", "#F4DFDF"] },
+      "near-black": { "role": "neutral", "displayName": "Near Black", "canonical": "#171B1B", "tonalRamp": ["#171B1B", "#252B2B", "#3D4545", "#5C6666", "#7D8888", "#A8B0B0", "#D1D5D5", "#F1F2F2"] },
+      "sand": { "role": "neutral", "displayName": "Sand", "canonical": "#E4BD96", "tonalRamp": ["#2E251D", "#544332", "#7B6248", "#A48160", "#C8A27A", "#E4BD96", "#F0D4B9", "#FAEDE1"] },
+      "originals-gold": { "role": "secondary", "displayName": "Originals Gold", "canonical": "#B6875B", "tonalRamp": ["#281E15", "#4B3726", "#705238", "#946D49", "#B6875B", "#D0A77F", "#E6C9AA", "#F7EBDD"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero-scale editorial statements." },
+      "headline": { "displayName": "Act Headline", "purpose": "Uppercase narrative act titles." },
+      "body": { "displayName": "Narrative Body", "purpose": "Campaign explanation with a 68ch measure." },
+      "label": { "displayName": "Operational Label", "purpose": "Progress, badge, and control text." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "seal-activate", "value": "400ms ease-out", "purpose": "Scale and opacity transition for completed seals." },
+      { "name": "card-reveal", "value": "500ms cubic-bezier(.2,.8,.2,1)", "purpose": "Reveal card copy without delaying access." },
+      { "name": "scroll-smoothing", "value": "1.1s exponential ease-out", "purpose": "One Lenis-controlled scroll rhythm." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "767px" },
+      { "name": "tablet", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Export Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A quiet fixed command over cinematic imagery.",
+      "html": "<button class=\"ds-export\">DOWNLOAD .PPTX</button>",
+      "css": ".ds-export{min-height:42px;padding:.7rem 1rem;border:1px solid rgba(228,188,151,.18);border-radius:6px;background:#1F2424;color:#E4BD96;font-family:Spectral,Georgia,serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,border-color .2s}.ds-export:hover{background:#390F10;border-color:#E4BD96}.ds-export:focus-visible{outline:2px solid #E4BD96;outline-offset:5px}"
+    },
+    {
+      "name": "Wax Seal",
+      "kind": "custom",
+      "refersTo": "stamp-active",
+      "description": "The active completion state used by map progress.",
+      "html": "<span class=\"ds-seal\" aria-label=\"Complete\"></span>",
+      "css": ".ds-seal{display:block;width:44px;aspect-ratio:1;border:1px solid #E4BD96;border-radius:50%;background:#BC0000;transition:opacity .4s ease-out,transform .4s ease-out}.ds-seal:hover{transform:scale(1.06)}.ds-seal:focus-visible{outline:2px solid #E4BD96;outline-offset:5px}"
+    },
+    {
+      "name": "Reveal Card",
+      "kind": "card",
+      "description": "An image-led repeated item whose copy becomes fully visible on interaction.",
+      "html": "<article class=\"ds-card\" tabindex=\"0\"><img alt=\"\"><div>THE MIRRORS</div></article>",
+      "css": ".ds-card{position:relative;overflow:hidden;aspect-ratio:4/5;border-radius:8px;background:#1F2424;color:#E4BD96}.ds-card:focus-visible{outline:2px solid #E4BD96;outline-offset:5px}.ds-card img{width:100%;height:100%;object-fit:cover}"
+    },
+    {
+      "name": "Map Rail",
+      "kind": "nav",
+      "description": "A vertical linked progress spine for the 16-act deck.",
+      "html": "<nav class=\"ds-rail\"><a class=\"is-active\" href=\"#act\" aria-label=\"Go to act\"></a></nav>",
+      "css": ".ds-rail{position:relative;width:1px;height:180px;background:rgba(228,188,151,.24)}.ds-rail a{position:absolute;left:-5px;top:0;width:10px;aspect-ratio:1;border:1px solid #E4BD96;border-radius:50%;background:#BC0000}.ds-rail a:focus-visible{outline:2px solid #E4BD96;outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Map",
+    "overview": "A digital review deck mirrors the map guests receive at the event. Full-bleed imagery carries the experience while sand-gold editorial type and wax-seal state marks provide orientation.",
+    "keyCharacteristics": ["Full-bleed cinematic imagery", "Near-black and oxblood discipline", "Wax-seal progress", "Spectral editorial typography", "Accessible motion fallbacks"],
+    "rules": [
+      { "name": "Signal Red", "body": "Dracula red indicates progress or completion; it does not decorate passive UI.", "section": "colors" },
+      { "name": "Image Lettering", "body": "The Dracula lockup and campaign taglines remain supplied image assets.", "section": "typography" },
+      { "name": "Image-First Depth", "body": "Depth comes from supplied plates and scroll relationship, not decorative shadows.", "section": "elevation" }
+    ],
+    "dos": ["Do keep licensed key art intact and limited to the two hero acts.", "Do reserve Dracula red for active and completed progress.", "Do preserve keyboard, touch, and reduced-motion access."],
+    "donts": ["Don't crop, filter, recolor, or separate figures from licensed key art.", "Don't use Audible orange as an interface accent.", "Don't depend on hover to reveal required review content."]
+  }
+}

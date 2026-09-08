@@ -1,0 +1,572 @@
+{
+  "tool": "comp-spec",
+  "version": 1,
+  "createdAt": "2026-09-08T08:40:33.886Z",
+  "comp": ".impeccable/mocks/the-hunt-comp-ab.png",
+  "warnings": [
+    "region field-guide-panel: \"container\": true set in the regions file (the region-size refusal is overridden: one undivided element)"
+  ],
+  "uncoveredInkCells": [],
+  "compSize": {
+    "width": 1600,
+    "height": 1600
+  },
+  "aspect": 1,
+  "orientation": "landscape",
+  "palette": [
+    {
+      "hex": "#1e2020",
+      "coverage": 0.9105
+    },
+    {
+      "hex": "#4d382a",
+      "coverage": 0.0277
+    },
+    {
+      "hex": "#293626",
+      "coverage": 0.023
+    },
+    {
+      "hex": "#b88760",
+      "coverage": 0.0219
+    },
+    {
+      "hex": "#545147",
+      "coverage": 0.0169
+    }
+  ],
+  "bands": [
+    {
+      "y": 0.75,
+      "strength": 0.2298
+    }
+  ],
+  "regions": [
+    {
+      "id": "hero-keyart",
+      "kind": "image",
+      "note": "Untouched licensed full key art plate; CSS may only apply uniform vertical translation",
+      "grid": "A0:J9",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      },
+      "px": {
+        "x": 0,
+        "y": 0,
+        "w": 1600,
+        "h": 1600
+      },
+      "aspect": 1,
+      "palette": [
+        {
+          "hex": "#1e2020",
+          "coverage": 0.9105
+        },
+        {
+          "hex": "#4d382a",
+          "coverage": 0.0277
+        },
+        {
+          "hex": "#293626",
+          "coverage": 0.023
+        },
+        {
+          "hex": "#b88760",
+          "coverage": 0.0219
+        },
+        {
+          "hex": "#545147",
+          "coverage": 0.0169
+        }
+      ],
+      "detail": {
+        "energy": 7.417
+      },
+      "medium": "raster",
+      "plate": "assets/plates/hero-keyart.png",
+      "text": null
+    },
+    {
+      "id": "field-guide-panel",
+      "kind": "chrome",
+      "note": "Narrow translucent dark-to-clear information panel",
+      "grid": "A0:D9",
+      "container": true,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 0.4,
+        "h": 1
+      },
+      "px": {
+        "x": 0,
+        "y": 0,
+        "w": 640,
+        "h": 1600
+      },
+      "aspect": 0.4,
+      "palette": [
+        {
+          "hex": "#1f2525",
+          "coverage": 0.9688
+        },
+        {
+          "hex": "#253525",
+          "coverage": 0.0225
+        },
+        {
+          "hex": "#f8e5bc",
+          "coverage": 0.0048
+        },
+        {
+          "hex": "#686252",
+          "coverage": 0.0022
+        },
+        {
+          "hex": "#b88858",
+          "coverage": 0.0019
+        }
+      ],
+      "detail": {
+        "energy": 5.6715
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "presented-by",
+      "kind": "text",
+      "note": "Small tracked presentation line in originals gold",
+      "grid": "A0:E0",
+      "coverBox": {
+        "x": 0,
+        "y": 0,
+        "w": 0.5,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.0675,
+        "y": 0.0638,
+        "w": 0.135,
+        "h": 0.0225
+      },
+      "px": {
+        "x": 108,
+        "y": 102,
+        "w": 216,
+        "h": 36
+      },
+      "aspect": 6,
+      "palette": [
+        {
+          "hex": "#182525",
+          "coverage": 0.7963
+        },
+        {
+          "hex": "#b68758",
+          "coverage": 0.1053
+        },
+        {
+          "hex": "#745e43",
+          "coverage": 0.044
+        },
+        {
+          "hex": "#473e32",
+          "coverage": 0.037
+        },
+        {
+          "hex": "#181828",
+          "coverage": 0.0174
+        }
+      ],
+      "detail": {
+        "energy": 23.1485
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 9,
+          "capHeightPx": 18.2,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 0.8535,
+          "advTall": 0.8535,
+          "advX": null,
+          "gap": 0.4268,
+          "xRatio": null,
+          "stemW": 0.1829,
+          "contrast": 1.5921,
+          "serif": 2.7747,
+          "densTall": 0.4986,
+          "densX": null,
+          "weight": 0.4986
+        },
+        "widthClass": "wide",
+        "weightClass": "medium",
+        "chosen": {
+          "family": "Trirong",
+          "weight": 400,
+          "fontSizePx": 26,
+          "source": "catalog",
+          "estimatedSize": true,
+          "stamp": "fcd9d13383b9"
+        }
+      }
+    },
+    {
+      "id": "campaign-date",
+      "kind": "text",
+      "note": "Compact tracked campaign date",
+      "grid": "A6:D6",
+      "coverBox": {
+        "x": 0,
+        "y": 0.6,
+        "w": 0.4,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.0675,
+        "y": 0.6113,
+        "w": 0.1425,
+        "h": 0.0263
+      },
+      "px": {
+        "x": 108,
+        "y": 978,
+        "w": 228,
+        "h": 42
+      },
+      "aspect": 5.4286,
+      "palette": [
+        {
+          "hex": "#192525",
+          "coverage": 0.8278
+        },
+        {
+          "hex": "#e7b897",
+          "coverage": 0.0837
+        },
+        {
+          "hex": "#7b6c59",
+          "coverage": 0.0409
+        },
+        {
+          "hex": "#181828",
+          "coverage": 0.0276
+        },
+        {
+          "hex": "#b39878",
+          "coverage": 0.02
+        }
+      ],
+      "detail": {
+        "energy": 29.5498
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 8,
+          "capHeightPx": 20.9,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 0.9437,
+          "advTall": 0.9437,
+          "advX": null,
+          "gap": 0.3823,
+          "xRatio": null,
+          "stemW": 0.1842,
+          "contrast": 1.5698,
+          "serif": 2.5021,
+          "densTall": 0.462,
+          "densX": null,
+          "weight": 0.462
+        },
+        "widthClass": "wide",
+        "weightClass": "regular",
+        "chosen": {
+          "family": "Trirong",
+          "weight": 400,
+          "fontSizePx": 30,
+          "source": "catalog",
+          "estimatedSize": true,
+          "stamp": "e58bd48344cd"
+        }
+      }
+    },
+    {
+      "id": "audio-tagline",
+      "kind": "image",
+      "note": "Supplied vector A New Audio Thriller tagline",
+      "grid": "A7:E7",
+      "box": {
+        "x": 0,
+        "y": 0.7,
+        "w": 0.5,
+        "h": 0.1
+      },
+      "px": {
+        "x": 0,
+        "y": 1120,
+        "w": 800,
+        "h": 160
+      },
+      "aspect": 5,
+      "palette": [
+        {
+          "hex": "#212526",
+          "coverage": 0.9252
+        },
+        {
+          "hex": "#f7e4bc",
+          "coverage": 0.0445
+        },
+        {
+          "hex": "#263626",
+          "coverage": 0.0223
+        },
+        {
+          "hex": "#f8d098",
+          "coverage": 0.0041
+        },
+        {
+          "hex": "#666656",
+          "coverage": 0.0039
+        }
+      ],
+      "detail": {
+        "energy": 23.6019
+      },
+      "medium": "raster",
+      "plate": "assets/plates/audio-tagline.png",
+      "text": null
+    },
+    {
+      "id": "journey-line",
+      "kind": "chrome",
+      "note": "Hairline joining three journey states",
+      "grid": "A8:D8",
+      "box": {
+        "x": 0,
+        "y": 0.8,
+        "w": 0.4,
+        "h": 0.1
+      },
+      "px": {
+        "x": 0,
+        "y": 1280,
+        "w": 640,
+        "h": 160
+      },
+      "aspect": 4,
+      "palette": [
+        {
+          "hex": "#1f2525",
+          "coverage": 0.9429
+        },
+        {
+          "hex": "#2b3828",
+          "coverage": 0.037
+        },
+        {
+          "hex": "#4f4844",
+          "coverage": 0.0124
+        },
+        {
+          "hex": "#b48458",
+          "coverage": 0.0041
+        },
+        {
+          "hex": "#806446",
+          "coverage": 0.0036
+        }
+      ],
+      "detail": {
+        "energy": 4.5831
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "journey-labels",
+      "kind": "text",
+      "note": "Enter, Discover, Reveal labels",
+      "grid": "A8:D8",
+      "coverBox": {
+        "x": 0,
+        "y": 0.8,
+        "w": 0.4,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.1875,
+        "y": 0.8713,
+        "w": 0.0788,
+        "h": 0.0188
+      },
+      "px": {
+        "x": 300,
+        "y": 1394,
+        "w": 126,
+        "h": 30
+      },
+      "aspect": 4.2,
+      "palette": [
+        {
+          "hex": "#212928",
+          "coverage": 0.8667
+        },
+        {
+          "hex": "#7b6044",
+          "coverage": 0.0595
+        },
+        {
+          "hex": "#b38358",
+          "coverage": 0.0548
+        },
+        {
+          "hex": "#4e4038",
+          "coverage": 0.019
+        }
+      ],
+      "detail": {
+        "energy": 14.7491
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 8,
+          "capHeightPx": 13,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 0.8249,
+          "advTall": 0.8249,
+          "advX": null,
+          "gap": 0.3453,
+          "xRatio": null,
+          "stemW": 0.2061,
+          "contrast": 1.4133,
+          "serif": 1.3223,
+          "densTall": 0.5269,
+          "densX": null,
+          "weight": 0.5269
+        },
+        "widthClass": "wide",
+        "weightClass": "medium"
+      }
+    },
+    {
+      "id": "journey-seals",
+      "kind": "control",
+      "note": "Three wax-seal journey marks with first active",
+      "grid": "A9:D9",
+      "coverBox": {
+        "x": 0,
+        "y": 0.9,
+        "w": 0.4,
+        "h": 0.1
+      },
+      "box": {
+        "x": 0.0712,
+        "y": 0.9038,
+        "w": 0.0338,
+        "h": 0.0338
+      },
+      "px": {
+        "x": 114,
+        "y": 1446,
+        "w": 54,
+        "h": 54
+      },
+      "aspect": 1,
+      "palette": [
+        {
+          "hex": "#182220",
+          "coverage": 0.6301
+        },
+        {
+          "hex": "#b80909",
+          "coverage": 0.3041
+        },
+        {
+          "hex": "#e3b494",
+          "coverage": 0.047
+        },
+        {
+          "hex": "#d05c48",
+          "coverage": 0.0125
+        },
+        {
+          "hex": "#181828",
+          "coverage": 0.0063
+        }
+      ],
+      "detail": {
+        "energy": 5.9805
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    },
+    {
+      "id": "global-map-rail",
+      "kind": "chrome",
+      "note": "Fixed right-edge page progress line and seal marks",
+      "grid": "J0:J9",
+      "box": {
+        "x": 0.9,
+        "y": 0,
+        "w": 0.1,
+        "h": 1
+      },
+      "px": {
+        "x": 1440,
+        "y": 0,
+        "w": 160,
+        "h": 1600
+      },
+      "aspect": 0.1,
+      "palette": [
+        {
+          "hex": "#1c1515",
+          "coverage": 0.9432
+        },
+        {
+          "hex": "#571109",
+          "coverage": 0.0283
+        },
+        {
+          "hex": "#781208",
+          "coverage": 0.016
+        },
+        {
+          "hex": "#380f0d",
+          "coverage": 0.0072
+        },
+        {
+          "hex": "#2a0a1a",
+          "coverage": 0.0054
+        }
+      ],
+      "detail": {
+        "energy": 1.3517
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null
+    }
+  ]
+}

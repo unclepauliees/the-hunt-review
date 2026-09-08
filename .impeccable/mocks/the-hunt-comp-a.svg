@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs><linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#171B1B" stop-opacity="0"/><stop offset="1" stop-color="#171B1B" stop-opacity=".92"/></linearGradient></defs>
+  <rect width="1600" height="1000" fill="#171B1B"/>
+  <image href="assets/keyart-16x9.jpg" x="0" y="0" width="1600" height="863" preserveAspectRatio="xMidYMid slice"/>
+  <rect y="450" width="1600" height="550" fill="url(#shade)"/>
+  <text x="72" y="76" fill="#B6875B" font-family="Georgia, serif" font-size="17" letter-spacing="4">PRESENTED BY NOWTHIS x AUDIBLE</text>
+  <text x="72" y="845" fill="#E4BD96" font-family="Georgia, serif" font-size="20" letter-spacing="5">CAMPAIGN KICK-OFF 2026</text>
+  <image href="assets/tagline-audio-2line.svg" x="72" y="875" width="380" height="82" preserveAspectRatio="xMinYMid meet"/>
+  <line x1="1518" y1="100" x2="1518" y2="900" stroke="#E4BD96" stroke-opacity=".42"/>
+  <g fill="#BC0000" stroke="#E4BD96"><circle cx="1518" cy="160" r="9"/><circle cx="1518" cy="335" r="9" fill="#390F10"/><circle cx="1518" cy="510" r="9" fill="#390F10"/><circle cx="1518" cy="685" r="9" fill="#390F10"/><circle cx="1518" cy="860" r="9" fill="#390F10"/></g>
+</svg>

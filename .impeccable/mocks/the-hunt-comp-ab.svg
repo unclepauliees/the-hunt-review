@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#171B1B" stop-opacity="0"/><stop offset="1" stop-color="#171B1B" stop-opacity=".92"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#171B1B" stop-opacity=".96"/><stop offset=".78" stop-color="#263435" stop-opacity=".84"/><stop offset="1" stop-color="#263435" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="#171B1B"/>
+  <image href="assets/keyart-16x9.jpg" x="0" y="0" width="1600" height="1000" preserveAspectRatio="xMidYMid slice"/>
+  <rect y="520" width="1600" height="480" fill="url(#shade)"/>
+  <rect x="0" y="0" width="565" height="1000" fill="url(#panel)"/>
+  <text x="72" y="80" fill="#B6875B" font-family="Georgia, serif" font-size="16" letter-spacing="4">PRESENTED BY NOWTHIS x AUDIBLE</text>
+  <text x="72" y="630" fill="#E4BD96" font-family="Georgia, serif" font-size="18" letter-spacing="5">CAMPAIGN KICK-OFF 2026</text>
+  <image href="assets/tagline-audio-2line.svg" x="72" y="675" width="360" height="105" preserveAspectRatio="xMinYMid meet"/>
+  <line x1="72" y1="842" x2="430" y2="842" stroke="#E4BD96" stroke-opacity=".38"/>
+  <g fill="#B6875B" font-family="Georgia, serif" font-size="11" letter-spacing="2"><text x="72" y="886">ENTER</text><text x="190" y="886">DISCOVER</text><text x="335" y="886">REVEAL</text></g>
+  <g stroke="#E4BD96"><circle cx="88" cy="922" r="11" fill="#BC0000"/><circle cx="221" cy="922" r="11" fill="#390F10"/><circle cx="360" cy="922" r="11" fill="#390F10"/></g>
+  <line x1="1518" y1="100" x2="1518" y2="900" stroke="#E4BD96" stroke-opacity=".42"/>
+  <g fill="#390F10" stroke="#E4BD96"><circle cx="1518" cy="160" r="9" fill="#BC0000"/><circle cx="1518" cy="335" r="9"/><circle cx="1518" cy="510" r="9"/><circle cx="1518" cy="685" r="9"/><circle cx="1518" cy="860" r="9"/></g>
+</svg>

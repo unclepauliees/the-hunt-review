@@ -1,0 +1,242 @@
+{
+  "tool": "build-phase",
+  "version": 2,
+  "startedAt": "2026-09-08T01:13:33.185Z",
+  "comp": ".impeccable/mocks/the-hunt-comp-ab.png",
+  "direction": "da7d97a8",
+  "breakpoint": "1600x1600",
+  "artifact": null,
+  "phase": "review",
+  "phases": {
+    "comps": {
+      "status": "closed",
+      "openedAt": "2026-09-08T01:13:33.185Z",
+      "closedAt": "2026-09-08T08:39:42.148Z",
+      "attempts": 3,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "4 comps, 1 approved",
+        "approved": ".impeccable/mocks/the-hunt-comp-ab.png",
+        "at": "2026-09-08T08:39:42.147Z"
+      },
+      "forced": null
+    },
+    "spec": {
+      "status": "closed",
+      "openedAt": "2026-09-08T08:39:42.241Z",
+      "closedAt": "2026-09-08T08:40:58.465Z",
+      "attempts": 2,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "9 regions, 2 plates, 3 text regions measured",
+        "at": "2026-09-08T08:40:58.465Z"
+      },
+      "forced": null
+    },
+    "plates": {
+      "status": "closed",
+      "openedAt": "2026-09-08T08:40:58.465Z",
+      "closedAt": "2026-09-08T08:42:30.238Z",
+      "attempts": 3,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "2/2 plates",
+        "at": "2026-09-08T08:42:30.237Z"
+      },
+      "forced": null
+    },
+    "hero": {
+      "status": "closed",
+      "openedAt": "2026-09-08T08:42:30.238Z",
+      "closedAt": "2026-09-08T08:49:58.582Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "hero 100% (match)",
+        "score": 1,
+        "verdict": "match",
+        "report": ".impeccable/review/diff/hero/report.json",
+        "sideBySide": ".impeccable/review/diff/hero/side-by-side.png",
+        "worst": [
+          "hero-keyart match 100%",
+          "field-guide-panel match 100%",
+          "presented-by match 100%"
+        ],
+        "worstIds": [
+          "hero-keyart",
+          "field-guide-panel",
+          "presented-by"
+        ],
+        "worstCrops": [
+          {
+            "id": "hero-keyart",
+            "verdict": "match",
+            "score": {
+              "overall": 1,
+              "structure": 1,
+              "color": 1,
+              "colorIntersection": 1,
+              "paletteMatch": 1,
+              "detail": 1,
+              "detailRaw": 1,
+              "detailAdded": 0,
+              "bands": 1
+            },
+            "file": ".impeccable/review/diff/hero/regions/hero-keyart.png"
+          },
+          {
+            "id": "field-guide-panel",
+            "verdict": "match",
+            "score": {
+              "overall": 1,
+              "structure": 1,
+              "color": 1,
+              "colorIntersection": 1,
+              "paletteMatch": 1,
+              "detail": 1,
+              "detailRaw": 1,
+              "detailAdded": 0,
+              "bands": 1
+            },
+            "file": ".impeccable/review/diff/hero/regions/field-guide-panel.png"
+          },
+          {
+            "id": "presented-by",
+            "verdict": "match",
+            "score": {
+              "overall": 1,
+              "structure": 1,
+              "color": 1,
+              "colorIntersection": 1,
+              "paletteMatch": 1,
+              "detail": 1,
+              "detailRaw": 1,
+              "detailAdded": 0,
+              "bands": 1
+            },
+            "file": ".impeccable/review/diff/hero/regions/presented-by.png"
+          }
+        ],
+        "advisories": [],
+        "regionVerdicts": {
+          "hero-keyart": "match",
+          "field-guide-panel": "match",
+          "presented-by": "match",
+          "campaign-date": "match",
+          "audio-tagline": "match",
+          "journey-line": "match",
+          "journey-labels": "match",
+          "journey-seals": "match",
+          "global-map-rail": "match"
+        },
+        "at": "2026-09-08T08:49:58.581Z"
+      },
+      "forced": null,
+      "records": 4,
+      "readingsSeen": {
+        "chrome journey-line: its rule sits 65px into the box in the comp and 39px in the build (-26px), so the strip is shorter than the comp's; match the height, not only the position": 1
+      },
+      "history": [
+        {
+          "at": "2026-09-08T08:49:58.581Z",
+          "score": 1,
+          "worstIds": [
+            "hero-keyart",
+            "field-guide-panel",
+            "presented-by"
+          ],
+          "regionVerdicts": {
+            "hero-keyart": "match",
+            "field-guide-panel": "match",
+            "presented-by": "match",
+            "campaign-date": "match",
+            "audio-tagline": "match",
+            "journey-line": "match",
+            "journey-labels": "match",
+            "journey-seals": "match",
+            "global-map-rail": "match"
+          },
+          "artifactHash": "3a8658f3b73a"
+        }
+      ]
+    },
+    "sections": {
+      "status": "closed",
+      "openedAt": "2026-09-08T08:49:58.582Z",
+      "closedAt": "2026-09-08T09:03:58.645Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-09-08T09:03:58.645Z"
+      },
+      "forced": null
+    },
+    "motion": {
+      "status": "closed",
+      "openedAt": "2026-09-08T09:03:58.645Z",
+      "closedAt": "2026-09-08T09:04:04.740Z",
+      "attempts": 1,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "no mechanical gate",
+        "at": "2026-09-08T09:04:04.740Z"
+      },
+      "forced": null
+    },
+    "responsive": {
+      "status": "closed",
+      "openedAt": "2026-09-08T09:04:04.740Z",
+      "closedAt": "2026-09-08T09:10:11.902Z",
+      "attempts": 3,
+      "notes": [],
+      "gate": {
+        "ok": true,
+        "reasons": [],
+        "summary": "desktop 99% (match)",
+        "score": 0.9868,
+        "sideBySide": ".impeccable/review/diff/desktop/side-by-side.png",
+        "at": "2026-09-08T09:10:11.902Z"
+      },
+      "forced": null
+    },
+    "review": {
+      "status": "closed",
+      "openedAt": "2026-09-08T09:10:11.902Z",
+      "closedAt": "2026-09-08T09:16:52.300Z",
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    }
+  },
+  "finish": {
+    "disposition": "ship",
+    "at": "2026-09-08T09:16:52.299Z",
+    "phaseAtFinish": "review"
+  },
+  "plates": {
+    "hero-keyart": {
+      "status": "ok",
+      "score": 1,
+      "size": "1600x1600"
+    },
+    "audio-tagline": {
+      "status": "ok",
+      "score": 0.9822,
+      "size": "1600x320"
+    }
+  }
+}
