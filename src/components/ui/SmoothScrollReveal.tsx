@@ -14,13 +14,13 @@ export function SmoothScrollReveal({ scrollHeight = 1500, image, backdrop, alt, 
   const root = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: root, offset: ["start start", "end end"] });
-  const clipStart = useTransform(scrollYProgress, [0, 1], [25, 0]);
-  const clipEnd = useTransform(scrollYProgress, [0, 1], [75, 100]);
+  const clipStart = useTransform(scrollYProgress, [0, 1], [12, 0]);
+  const clipEnd = useTransform(scrollYProgress, [0, 1], [88, 100]);
   const clipPath = useMotionTemplate`polygon(${clipStart}% ${clipStart}%, ${clipEnd}% ${clipStart}%, ${clipEnd}% ${clipEnd}%, ${clipStart}% ${clipEnd}%)`;
-  const scale = useTransform(scrollYProgress, [0, 1], [1.7, 1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.28, 1]);
 
   return (
-    <div ref={root} className="reveal-scroll-shell" style={{ height: `calc(${scrollHeight}px + 100vh)` }}>
+    <div ref={root} className="reveal-scroll-shell" style={{ height: `calc(${scrollHeight}px + 100svh)` }}>
       <div className="reveal-scroll-sticky">
         <img className="reveal-ground" src={backdrop} alt="" />
         <motion.div className="reveal-parallax-media" style={reduce ? undefined : { clipPath }}>

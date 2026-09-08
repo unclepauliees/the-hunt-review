@@ -1,8 +1,16 @@
 import puppeteer from "puppeteer-core";
 import axe from "axe-core";
-import { mkdirSync, readdirSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync } from "node:fs";
+import { createServer } from "node:http";
 
-const url = process.argv[2] ?? "http://127.0.0.1:4173/";
+const artifact = readFileSync("dist/the-hunt.html");
+const server = createServer((_request, response) => {
+  response.writeHead(200, { "content-type": "text/html; charset=utf-8" });
+  response.end(artifact);
+});
+await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+const address = server.address();
+const url = process.argv[2] ?? `http://127.0.0.1:${address.port}/`;
 const out = ".impeccable/review";
 mkdirSync(`${out}/downloads`, { recursive: true });
 const browser = await puppeteer.launch({ executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", headless: true, args: ["--no-sandbox", "--disable-dev-shm-usage"] });
@@ -39,7 +47,7 @@ async function inspect(name, width, height, reduced = false, touch = false) {
     pressedMarkers: document.querySelectorAll('#activations .carousel-progress button.stamp[aria-pressed="true"]').length,
     activeTitle: document.querySelector("#activations .elastic-item.is-active h3")?.textContent,
   }));
-  await page.click("#activations .elastic-item:nth-child(2) .elastic-cue");
+  await page.click("#activations .elastic-item.is-active .elastic-cue");
   const detailOpen = await page.evaluate(() => ({
     dialog: Boolean(document.querySelector(".gallery-detail[role=dialog]")),
     image: document.querySelector(".gallery-detail img")?.getAttribute("alt"),
@@ -76,4 +84,5 @@ const slidesFallback = await exportPage.evaluate(() => ({
 results.push({ slidesFallback, pptxDownloads: readdirSync(`${out}/downloads`) });
 await exportPage.close();
 await browser.close();
+await new Promise((resolve) => server.close(resolve));
 console.log(JSON.stringify(results, null, 2));
