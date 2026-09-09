@@ -1,0 +1,23 @@
+{
+  "name": "The Hunt | NowThis x Audible",
+  "short_name": "The Hunt",
+  "description": "A cinematic NowThis x Audible presentation for The Hunt, an immersive Bram Stoker's Dracula guest experience.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#171b1b",
+  "theme_color": "#171b1b",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
