@@ -88,7 +88,7 @@ export const acts: Act[] = [
   { id: "hunt", index: 11, chapter: "The Mechanic", kind: "narrative", headline: "The Hunt For Dracula", background: "bg-03", image: "env-stamp.jpg", slideLayout: "full-image-caption", body: ["Using the map they received upon arrival, guests must visit every activation hidden throughout the venue to piece together the answer. At each stop, they uncover a new part of the story through audio, prophecy, or visual clues and receive a custom blood-red Audible stamp marking their progress.", "Each clue reveals more. Each branded stamp brings them closer. Only guests who complete the entire Hunt and collect every stamp can unlock The Midnight Revelation."] },
   { id: "activations", index: 12, chapter: "Four Activations", kind: "carousel", headline: "Four Clues", background: "bg-03", stampIndex: 4, slideLayout: "grid-4", cards: [
     { badge: "DECODE", title: "The Mirrors", body: "Antique mirrors conceal messages and visual illusions within their reflections. Guests must determine which reflection reveals the hidden message. The message uncovers another piece of Dracula's fate.", image: "env-mirrors.jpg" },
-    { badge: "CAPTURE", title: "The Portrait Booth", body: "Guests step inside an ornate Victorian portrait booth and become part of Dracula's world. Audio clips play as their portrait is captured. They must examine the finished portrait to uncover a hidden detail.", image: "render-wine-cellar.jpg", detailImages: [
+    { badge: "CAPTURE", title: "The Portrait Booth", body: "Guests step into the wine cellar's ornate Victorian portrait booth and become part of Dracula's world. Audio clips play as their portrait is captured. They must examine the finished portrait to uncover a hidden detail.", image: "render-wine-cellar.jpg", detailImages: [
       { src: "render-wine-cellar.jpg", caption: "Portrait booth render", kind: "render" },
       { src: "venue-wine-cellar.jpg", caption: "The wine cellar today", kind: "venue" },
     ] },
@@ -117,10 +117,10 @@ export const acts: Act[] = [
   ] },
   { id: "open-items", index: 16, chapter: "For Discussion", kind: "openItems", headline: "Open Items", background: "bg-03", slideLayout: "checklist", body: [
     "Audio integration - when and where clips play without disrupting the dining experience. Audio is mandatory to some extent; placement needs sign-off.",
-    "Leave-behind concept - options under consideration include a chocolate heart with cherry centre, a candle, or an eternal rose. Whichever is selected must carry the QR component.",
-    "Guest flow and throughput - the aura reading and portrait booth are one-at-a-time formats. At 200 guests these require timed waves or staggered arrivals. Needs modelling.",
-    "Talent involvement - none currently scoped. Confirm whether Bailey or Purnell participation is in play.",
-    "Date, guest count, and budget band - not yet set.",
+    "Leave-behind production - the branded gift box is specified at 175 pcs and carries the QR component. Confirm final contents and approval path.",
+    "Guest flow and throughput - the venue floor plan now maps activation zones. Model timed waves or staggered arrivals for the aura reading and portrait booth before final guest count.",
+    "Talent and performance involvement - none currently scoped beyond the string quartet. Confirm whether Bailey, Purnell, or the costumed grand-feast performance shown in the render is in play.",
+    "Date, final guest count, and budget band - date and budget are not yet set. Reconcile final guest count against the 175-box production quantity.",
     "Key art motion treatment - confirm brand-team approval for scroll-based parallax on the delivered key art composition.",
   ] },
   { id: "keyart-close", index: 17, chapter: "Listen To The Darkness", kind: "hero", headline: "Listen To The Darkness", background: "keyart", slideLayout: "hero" },

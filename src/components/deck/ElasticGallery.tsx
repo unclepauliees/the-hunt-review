@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { asset } from "../../assets";
 import type { Card, Gallery, GalleryImage } from "../../deck.config";
+import { StampSeal } from "./StampSeal";
 
 type ElasticGalleryProps = {
   cards?: Card[];
@@ -121,19 +122,27 @@ export function ElasticGallery({ cards = [], gallery, activeIndex, onActiveChang
     setDetailIndex(index);
   };
 
+  const activateFromPointer = (target: EventTarget | null, index: number) => {
+    if (target instanceof Element && target.closest(".elastic-quick-expand")) return;
+    activate(index);
+  };
+
   return (
-    <div className="elastic-gallery" aria-label={gallery?.title ?? "Image gallery"}>
+    <div className={`elastic-gallery ${gallery ? "is-image-gallery" : ""}`} aria-label={gallery?.title ?? "Image gallery"}>
       {panels.map((panel, index) => {
         const isActive = active === index;
         return (
           <article
             key={panel.key}
             className={`elastic-item ${isActive ? "is-active" : ""} ${panel.kind ? `is-${panel.kind}` : ""}`}
-            onMouseEnter={() => activate(index)}
+            onPointerEnter={(event) => activateFromPointer(event.target, index)}
+            onPointerMove={(event) => activateFromPointer(event.target, index)}
+            onMouseEnter={(event) => activateFromPointer(event.target, index)}
+            onMouseMove={(event) => activateFromPointer(event.target, index)}
           >
             <img className={panel.fit === "contain" ? "is-contain" : ""} src={asset(panel.image)} alt="" />
             <div className="elastic-shade" aria-hidden="true" />
-            <button className="elastic-panel-trigger" type="button" aria-label={`Show ${panel.title}`} aria-pressed={isActive} onFocus={() => activate(index)} onClick={() => activate(index)} />
+            <button className="elastic-panel-trigger" type="button" aria-label={`Show ${panel.title}`} aria-pressed={isActive} onMouseEnter={() => activate(index)} onFocus={() => activate(index)} onClick={() => activate(index)} />
             <div className="elastic-content">
               <div className="elastic-active-copy">
                 <span className={`elastic-label ${panel.kind ? `is-${panel.kind}` : ""}`}>{panel.label}</span>
@@ -141,14 +150,24 @@ export function ElasticGallery({ cards = [], gallery, activeIndex, onActiveChang
                 <h3>{panel.title}</h3>
                 {panel.body && <p>{panel.body}</p>}
                 <button className="elastic-cue" type="button" onClick={(event) => openDetail(index, event.currentTarget)}>
-                  Click to Expand <ArrowUpRight />
+                  Explore Detail <ArrowUpRight />
                 </button>
               </div>
+              {gallery && !isActive && (
+                <button className="elastic-quick-expand" type="button" aria-label={`Expand ${panel.title}`} title={`Expand ${panel.title}`} onClick={(event) => openDetail(index, event.currentTarget)}>
+                  <span>Expand</span><ArrowUpRight />
+                </button>
+              )}
               <span className="elastic-collapsed-title" aria-hidden="true">{panel.title}</span>
             </div>
           </article>
         );
       })}
+      {gallery && panels.length > 1 && (
+        <div className="gallery-progress" aria-label={`${gallery.title} gallery controls`}>
+          {panels.map((panel, index) => <StampSeal key={`control-${panel.key}`} label={panel.title} active={active === index} onActivate={() => activate(index)} />)}
+        </div>
+      )}
       {detailIndex !== null && createPortal(
         <div ref={detailRef} className={`gallery-detail ${detailImages.length > 1 ? "has-multiple" : ""}`} role="dialog" aria-modal="true" aria-label={`${detailPanel?.title ?? "Gallery"} image detail`} onClick={() => setDetailIndex(null)}>
           <div className="gallery-detail-stage" onClick={(event) => event.stopPropagation()}>

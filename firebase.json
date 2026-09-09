@@ -1,0 +1,30 @@
+{
+  "hosting": {
+    "target": "draculadeck",
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "the-hunt *.html",
+      "**/the-hunt *.html"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Robots-Tag",
+            "value": "noindex, nofollow, noarchive"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/the-hunt.html"
+      }
+    ]
+  }
+}

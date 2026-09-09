@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "intellectualasset-mgmt"
+  },
+  "targets": {
+    "intellectualasset-mgmt": {
+      "hosting": {
+        "draculadeck": [
+          "draculadeck-com"
+        ]
+      }
+    }
+  }
+}
