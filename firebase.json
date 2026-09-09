@@ -11,11 +11,47 @@
     ],
     "headers": [
       {
-        "source": "**",
+        "source": "/",
         "headers": [
           {
-            "key": "X-Robots-Tag",
-            "value": "noindex, nofollow, noarchive"
+            "key": "Cache-Control",
+            "value": "public, max-age=60"
+          }
+        ]
+      },
+      {
+        "source": "/index.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=60"
+          }
+        ]
+      },
+      {
+        "source": "/social-thumbnail.jpg",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=300"
+          }
+        ]
+      },
+      {
+        "source": "/social-thumbnail-square.jpg",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=300"
+          }
+        ]
+      },
+      {
+        "source": "/the-hunt.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
           }
         ]
       }
