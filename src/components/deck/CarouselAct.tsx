@@ -13,6 +13,7 @@ export function CarouselAct({ act }: { act: Act }) {
       <header><div><p className="act-marker">{act.chapter}</p><h2>{act.headline}</h2></div></header>
       <ElasticGallery cards={act.cards ?? []} activeIndex={active} onActiveChange={setActive} />
       <div className="carousel-progress">{(act.id === "activations" ? activationLabels : act.cards?.map((card) => card.badge) ?? []).map((label, index) => <StampSeal key={label} label={label} active={index === active} onActivate={() => setActive(index)} />)}</div>
+      {act.galleries?.length ? <div className="act-galleries">{act.galleries.map((gallery, index) => <section key={`${act.id}-${gallery.title}`} className="act-gallery-block" aria-labelledby={`${act.id}-gallery-${index + 1}`}><h3 id={`${act.id}-gallery-${index + 1}`} className="act-gallery-title">{gallery.title}</h3><ElasticGallery gallery={gallery} /></section>)}</div> : null}
     </section>
   );
 }

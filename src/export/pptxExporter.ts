@@ -1,7 +1,7 @@
 import pptxgen from "pptxgenjs";
 import JSZip from "jszip";
 import { asset } from "../assets";
-import { acts, venueStats, type Act, type Card } from "../deck.config";
+import { acts, exportImageForAct, venueStats, type Act, type Card, type GalleryImage } from "../deck.config";
 
 const W = 10;
 const H = 5.625;
@@ -41,6 +41,15 @@ function addBody(slide: pptxgen.Slide, paragraphs: string[], x: number, y: numbe
   slide.addText(paragraphs.join("\n\n"), { ...textOptions, x, y, w, h, fontSize, transparency: 10, valign: "top", breakLine: true, fit: "shrink", paraSpaceAfter: 9, align });
 }
 
+function exportBodyForAct(act: Act) {
+  if (act.body?.length) return act.body;
+  if (act.bullets?.length) return act.bullets.flatMap((group) => [group.label, ...group.items]);
+  if (act.cards?.length) {
+    return act.cards.map((card) => [card.badge, card.title, card.body].filter(Boolean).join(" / "));
+  }
+  return [];
+}
+
 async function addBase(slide: pptxgen.Slide, pptx: pptxgen, act: Act, transparency = 38) {
   addImage(slide, await dataUri(asset(bgFiles[act.background])), 0, 0, W, H);
   addOverlay(slide, pptx, transparency);
@@ -74,6 +83,51 @@ async function addFullImageCaption(slide: pptxgen.Slide, pptx: pptxgen, act: Act
   addTitle(slide, act.headline, .65, 4.05, 4.9, .62, 28);
   if (act.body?.length === 1) addBody(slide, act.body, 5.85, 3.75, 3.5, 1.2, 11.5);
   if ((act.body?.length ?? 0) > 1) addBody(slide, act.body ?? [], 5.85, 3.55, 3.5, 1.55, 8.8);
+}
+
+async function addGalleryExport(slide: pptxgen.Slide, pptx: pptxgen, act: Act, image: GalleryImage) {
+  if (image.kind === "graphic") {
+    await addBase(slide, pptx, act, 48);
+    addImage(slide, await dataUri(asset(image.src)), .55, .52, 4.8, 4.58, "contain", image.caption);
+    slide.addShape(pptx.ShapeType.roundRect, { x: .55, y: .52, w: 4.8, h: 4.58, rectRadius: .06, fill: { color: color.black, transparency: 100 }, line: { color: color.sand, transparency: 84, width: .5 } });
+    addMarker(slide, act.chapter, 5.72, .78, 3.75);
+    addTitle(slide, act.headline, 5.72, 1.08, 3.7, .76, act.kind === "venue" ? 25 : 29);
+    const body = exportBodyForAct(act);
+    if (body.length) addBody(slide, body, 5.72, 1.98, 3.55, act.kind === "venue" ? 1.18 : 2.65, act.kind === "venue" ? 9.2 : 10.5);
+    if (act.kind === "venue") {
+      venueStats.forEach((stat, index) => {
+        const y = 3.42 + index * .3;
+        slide.addShape(pptx.ShapeType.line, { x: 5.72, y, w: 3.55, h: 0, line: { color: color.sand, transparency: 82, width: .5 } });
+        slide.addText(stat, { ...textOptions, x: 5.72, y: y + .07, w: 3.55, h: .16, fontSize: 7, color: color.gold, charSpacing: 1.2, fit: "shrink" });
+      });
+    }
+    return;
+  }
+
+  addImage(slide, await dataUri(asset(image.src)), 0, 0, W, H, "cover", image.caption);
+  if (act.bullets?.length) {
+    addOverlay(slide, pptx, 42);
+    addMarker(slide, act.chapter, .78, .78, 3.8);
+    addTitle(slide, act.headline, .78, 1.08, 4.4, 1.05, 33);
+    act.bullets.forEach((group, index) => {
+      const x = index === 0 ? .78 : 5.22;
+      addMarker(slide, group.label, x, 2.62, 3.8);
+      addBody(slide, group.items, x, 3.02, 3.92, 1.8, 10.5);
+    });
+    return;
+  }
+  if (act.id === "arrival") {
+    addOverlay(slide, pptx, 58);
+    addMarker(slide, act.chapter, 3.2, 2.28, 3.6, "center");
+    addTitle(slide, act.headline, 2, 2.56, 6, .75, 38, "center");
+    return;
+  }
+  addOverlay(slide, pptx, 26);
+  addOverlay(slide, pptx, 12, color.black, 0, 3.1, W, 2.525);
+  addMarker(slide, act.chapter, .65, 3.6, 4.8);
+  addTitle(slide, act.headline, .65, 3.88, 4.9, .68, 28);
+  const body = exportBodyForAct(act);
+  if (body.length) addBody(slide, body, 5.85, 3.42, 3.5, 1.62, body.length > 2 ? 8.8 : 10.5);
 }
 
 async function addSplit(slide: pptxgen.Slide, pptx: pptxgen, act: Act) {
@@ -162,6 +216,8 @@ async function addChecklist(slide: pptxgen.Slide, pptx: pptxgen, act: Act) {
 async function addAct(pptx: pptxgen, act: Act) {
   const slide = pptx.addSlide();
   if (act.kind === "hero") return addHero(slide, pptx, act);
+  const exportImage = exportImageForAct(act);
+  if (exportImage && act.galleries?.length) return addGalleryExport(slide, pptx, act, exportImage);
   if (act.kind === "carousel") return addGrid(slide, pptx, act);
   if (act.kind === "venue") return addVenue(slide, pptx, act);
   if (act.kind === "openItems") return addChecklist(slide, pptx, act);

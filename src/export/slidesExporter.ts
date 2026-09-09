@@ -1,4 +1,4 @@
-import { acts } from "../deck.config";
+import { acts, exportImageForAct } from "../deck.config";
 import { slideAssetUrl } from "../assets";
 
 declare global {
@@ -37,7 +37,8 @@ export async function exportToSlides() {
   for (const act of acts) {
     const slideId = `act_${act.index}`;
     const bgName = act.background === "keyart" ? "keyart-16x9.jpg" : `${act.background}-16x9.jpg`;
-    const hasImage = Boolean(act.image);
+    const exportImage = exportImageForAct(act);
+    const hasImage = Boolean(exportImage);
     const requests: unknown[] = [
       { createSlide: { objectId: slideId, slideLayoutReference: { predefinedLayout: "BLANK" } } },
       { createImage: { url: slideAssetUrl(bgName), elementProperties: { pageObjectId: slideId, size: { width: { magnitude: 720, unit: "PT" }, height: { magnitude: 405, unit: "PT" } }, transform: { scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, unit: "PT" } } } },
@@ -45,7 +46,7 @@ export async function exportToSlides() {
       { insertText: { objectId: `${slideId}_title`, text: act.headline } },
       { updateTextStyle: { objectId: `${slideId}_title`, style: { fontFamily: "Spectral", fontSize: { magnitude: 40, unit: "PT" }, foregroundColor: { opaqueColor: { rgbColor: { red: .894, green: .741, blue: .588 } } } }, textRange: { type: "ALL" }, fields: "fontFamily,fontSize,foregroundColor" } },
     ];
-    if (act.image) requests.push({ createImage: { url: slideAssetUrl(act.image), elementProperties: { pageObjectId: slideId, size: { width: { magnitude: 320, unit: "PT" }, height: { magnitude: 250, unit: "PT" } }, transform: { scaleX: 1, scaleY: 1, translateX: 28, translateY: 118, unit: "PT" } } } });
+    if (exportImage) requests.push({ createImage: { url: slideAssetUrl(exportImage.src), elementProperties: { pageObjectId: slideId, size: { width: { magnitude: 320, unit: "PT" }, height: { magnitude: 250, unit: "PT" } }, transform: { scaleX: 1, scaleY: 1, translateX: 28, translateY: 118, unit: "PT" } } } });
     const body = [
       ...(act.body ?? []),
       ...(act.bullets ?? []).flatMap((group) => [group.label, ...group.items.map((item) => `• ${item}`)]),
