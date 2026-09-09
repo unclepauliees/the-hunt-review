@@ -9,7 +9,6 @@ const bgFiles = { "bg-02": "bg-02-16x9.jpg", "bg-03": "bg-03-16x9.jpg", "bg-04":
 const color = { black: "171B1B", oxblood: "390F10", gold: "B6875B", sand: "E4BD96", white: "FFFFFF" };
 
 async function dataUri(src: string) {
-  if (src.startsWith("data:")) return src;
   const blob = await fetch(src).then((response) => response.blob());
   return await new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
