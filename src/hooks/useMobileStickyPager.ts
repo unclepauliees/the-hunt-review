@@ -57,9 +57,7 @@ export function useMobileStickyPager() {
     let touchStartScrollY = 0;
     let touchDirection = 0;
     let wheelStartScrollY: number | null = null;
-    let wheelDirection = 0;
     let snapTimer = 0;
-    let settleTimer = 0;
     let isProgrammatic = false;
 
     const shouldIgnoreTarget = (target: EventTarget | null) => (
@@ -87,21 +85,6 @@ export function useMobileStickyPager() {
       isProgrammatic = true;
       window.scrollTo({ top: target.y, behavior: "smooth" });
       window.setTimeout(() => { isProgrammatic = false; }, 520);
-    };
-
-    const settleToTarget = (direction: number, startY: number | null) => {
-      const target = selectTarget(direction, startY);
-      if (!target) return;
-
-      const snap = () => {
-        isProgrammatic = true;
-        window.scrollTo({ top: target.y, behavior: "smooth" });
-        window.setTimeout(() => { isProgrammatic = false; }, 520);
-      };
-
-      snap();
-      window.clearTimeout(settleTimer);
-      settleTimer = window.setTimeout(snap, 260);
     };
 
     const queueSnap = (direction: number, startY: number | null, delay = 130) => {
@@ -141,42 +124,31 @@ export function useMobileStickyPager() {
       }
 
       touchDirection = deltaY > 0 ? 1 : -1;
-      settleToTarget(touchDirection, touchStartScrollY);
+      queueSnap(touchDirection, touchStartScrollY, 140);
     };
 
     const handleWheel = (event: WheelEvent) => {
       if (shouldIgnoreTarget(event.target) || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
       if (wheelStartScrollY === null) wheelStartScrollY = window.scrollY;
-      wheelDirection = event.deltaY > 0 ? 1 : -1;
-      queueSnap(wheelDirection, wheelStartScrollY, 180);
-    };
-
-    const handleScroll = () => {
-      if (isProgrammatic) return;
-      if (touchDirection) queueSnap(touchDirection, touchStartScrollY, 120);
-      if (wheelDirection && wheelStartScrollY !== null) queueSnap(wheelDirection, wheelStartScrollY, 120);
+      queueSnap(event.deltaY > 0 ? 1 : -1, wheelStartScrollY, 180);
     };
 
     const resetWheel = () => {
       wheelStartScrollY = null;
-      wheelDirection = 0;
     };
 
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
     window.addEventListener("wheel", handleWheel, { passive: true });
-    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("scrollend", resetWheel);
 
     return () => {
       window.clearTimeout(snapTimer);
-      window.clearTimeout(settleTimer);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
       window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("scrollend", resetWheel);
     };
   }, []);

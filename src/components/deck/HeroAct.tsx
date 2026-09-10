@@ -55,7 +55,7 @@ export function HeroAct({ act }: { act: Act }) {
     <section ref={root} id={act.id} data-act-index={act.index - 1} className={`hero-act ${closing ? "hero-close" : ""}`}>
       <div className="hero-stage">
         <div className="hero-base" />
-        {!closing && <img className="hero-mobile-art" src={asset("keyart-mobile-cover.webp")} alt="" />}
+        <img className={`hero-mobile-art ${closing ? "is-close" : ""}`} src={asset("keyart-mobile-cover.webp")} alt="" />
         <img className="hero-backdrop" data-depth="7" src={asset("keyart-master-nologo.jpg")} alt="" />
         <div className="hero-keyart-plane" data-depth="5">
           <img className="hero-art" src={asset("keyart-16x9.jpg")} alt="Audible Dracula key art featuring Jonathan Bailey and Ella Purnell" />
