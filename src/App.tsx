@@ -8,11 +8,14 @@ import { VenueAct } from "./components/deck/VenueAct";
 import { OpenItemsAct } from "./components/deck/OpenItemsAct";
 import { RevealAct } from "./components/deck/RevealAct";
 import { ReferenceAct } from "./components/deck/ReferenceAct";
+import { useMobileStickyPager } from "./hooks/useMobileStickyPager";
 
 const comparisonPlates = ["../assets/plates/hero-keyart.png", "../assets/plates/audio-tagline.png"];
 void comparisonPlates;
 
 export default function App() {
+  useMobileStickyPager();
+
   return (
     <LenisProvider>
       <main aria-label="The Hunt campaign presentation">

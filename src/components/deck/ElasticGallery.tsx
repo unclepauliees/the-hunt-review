@@ -41,6 +41,7 @@ function detailImagesFor(panel: GalleryPanel): GalleryImage[] {
 export function ElasticGallery({ cards = [], gallery, activeIndex, onActiveChange }: ElasticGalleryProps) {
   const [internalActive, setInternalActive] = useState(0);
   const [detailIndex, setDetailIndex] = useState<number | null>(null);
+  const [detailOrientation, setDetailOrientation] = useState<Record<string, "landscape" | "portrait">>({});
   const detailRef = useRef<HTMLDivElement | null>(null);
   const detailTriggerRef = useRef<HTMLButtonElement | null>(null);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
@@ -123,6 +124,11 @@ export function ElasticGallery({ cards = [], gallery, activeIndex, onActiveChang
     setDetailIndex(index);
   };
 
+  const recordDetailOrientation = (key: string, image: HTMLImageElement) => {
+    const orientation = image.naturalHeight > image.naturalWidth * 1.08 ? "portrait" : "landscape";
+    setDetailOrientation((current) => current[key] === orientation ? current : { ...current, [key]: orientation });
+  };
+
   const activateFromPointer = (target: EventTarget | null, index: number) => {
     if (target instanceof Element && target.closest(".elastic-quick-expand")) return;
     activate(index);
@@ -177,16 +183,21 @@ export function ElasticGallery({ cards = [], gallery, activeIndex, onActiveChang
       {detailIndex !== null && createPortal(
         <div ref={detailRef} className={`gallery-detail ${detailImages.length > 1 ? "has-multiple" : ""}`} role="dialog" aria-modal="true" aria-label={`${detailPanel?.title ?? "Gallery"} image detail`} onClick={() => setDetailIndex(null)}>
           <div className="gallery-detail-stage" onClick={(event) => event.stopPropagation()}>
-            {detailImages.map((image, index) => (
-              <figure key={`${image.src}-${index}`} className={`gallery-detail-figure is-${image.kind}`}>
+            {detailImages.map((image, index) => {
+              const imageKey = `${image.src}-${index}`;
+              const orientation = detailOrientation[imageKey] ?? "landscape";
+              return (
+              <figure key={imageKey} className={`gallery-detail-figure is-${image.kind} is-detail-${orientation}`}>
                 <div className="gallery-detail-labels">
                   <span className="gallery-kind-label">{labelForKind(image.kind)}</span>
                   {image.specLabel && <span className="gallery-spec-label">{image.specLabel}</span>}
                 </div>
-                <img src={asset(image.src)} alt={image.caption} />
+                <div className="gallery-detail-visual">
+                  <img src={asset(image.src)} alt={image.caption} onLoad={(event) => recordDetailOrientation(imageKey, event.currentTarget)} />
+                </div>
                 <figcaption>{image.caption}</figcaption>
               </figure>
-            ))}
+            );})}
           </div>
           <button data-gallery-close autoFocus type="button" className="gallery-detail-close" aria-label="Close image detail" title="Close image detail" onClick={() => setDetailIndex(null)}><X /></button>
         </div>,

@@ -2,6 +2,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { useRef } from "react";
 import { asset } from "../../assets";
 import { activationLabels, type Act } from "../../deck.config";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { ElasticGallery } from "./ElasticGallery";
 import { StampSeal } from "./StampSeal";
 
@@ -10,21 +11,26 @@ const backgroundFiles = { "bg-02": "bg-02-16x9.jpg", "bg-03": "bg-03-16x9.jpg", 
 export function NarrativeAct({ act }: { act: Act }) {
   const root = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: root, offset: ["start start", "end end"] });
-  const copyX = useTransform(scrollYProgress, [0, .18, .72, 1], [32, 0, 0, -20]);
-  const opacity = useTransform(scrollYProgress, [0, .12, .72, .92, 1], [1, 1, 1, .7, .5]);
-  const imageScale = useTransform(scrollYProgress, [.55, 1], [1, .88]);
+  const touchViewport = useMediaQuery("(max-width: 767px), (pointer: coarse)");
+  const { scrollYProgress } = useScroll({ target: root, offset: touchViewport ? ["start end", "end start"] : ["start start", "end end"] });
+  const copyX = useTransform(scrollYProgress, [0, .18, .72, 1], touchViewport ? [0, 0, 0, 0] : [32, 0, 0, -20]);
+  const copyY = useTransform(scrollYProgress, [0, .32, .76, 1], touchViewport ? [34, 0, -10, -22] : [0, 0, 0, 0]);
+  const opacity = useTransform(scrollYProgress, [0, .12, .72, .92, 1], touchViewport ? [.68, 1, 1, .84, .66] : [1, 1, 1, .7, .5]);
+  const imageScale = useTransform(scrollYProgress, [0, .5, 1], touchViewport ? [1.08, 1.02, .96] : [1, 1, .88]);
+  const imageY = useTransform(scrollYProgress, [0, 1], touchViewport ? ["-3svh", "3svh"] : ["0vh", "0vh"]);
   const hasGalleries = Boolean(act.galleries?.length);
+  const imageStyle = reduce ? undefined : touchViewport ? { scale: imageScale, y: imageY } : { scale: imageScale };
+  const copyStyle = reduce ? undefined : touchViewport ? { x: copyX, y: copyY, opacity } : { x: copyX, opacity };
 
   return (
     <section id={act.id} data-act-index={act.index - 1} className={`narrative-act ${!act.image ? "text-only" : ""} ${hasGalleries ? "has-galleries" : ""} ${act.id === "structure" ? "structure-act" : ""} ${act.id === "premise" ? "premise-act" : ""} ${act.id === "corridor" ? "corridor-act" : ""} ${act.id === "arrival" ? "arrival-act" : ""} ${act.id === "dresscode" ? "dresscode-act" : ""} ${act.id === "atmosphere" ? "atmosphere-act" : ""} ${act.id === "revelation" ? "revelation-act" : ""}`}>
       <div ref={root} className="narrative-scroll-scene">
         <div className="narrative-sticky">
           <img className="act-ground" src={asset(backgroundFiles[act.background])} alt="" />
-          {act.image && <motion.img style={reduce ? undefined : { scale: imageScale }} className="act-image" src={asset(act.image)} alt="" />}
+          {act.image && <motion.img style={imageStyle} className="act-image" src={asset(act.image)} alt="" />}
           <div className="act-scrim" />
           <div className="act-copy">
-            <motion.div style={reduce ? undefined : { x: copyX, opacity }} className="act-copy-motion">
+            <motion.div style={copyStyle} className="act-copy-motion">
               <p className="act-marker">{act.chapter}</p>
               <h2>{act.headline}</h2>
               {act.subheading && <h3 className="narrative-subheading">{act.subheading}</h3>}
