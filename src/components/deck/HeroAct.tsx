@@ -67,10 +67,9 @@ export function HeroAct({ act }: { act: Act }) {
           {!closing ? (
             <div className="hero-bottom-copy">
               <p className="hero-date">{act.body?.[0]}</p>
-              <img className="hero-tagline" data-depth="7" src={asset("tagline-audio-2line.svg")} alt="A New Audio Thriller" />
             </div>
           ) : (
-            <img className="hero-tagline large" data-depth="7" src={asset("tagline-listen-2line.svg")} alt="Listen to the Darkness" />
+            <h2 className="hero-thanks">Thanks</h2>
           )}
         </div>
       </div>

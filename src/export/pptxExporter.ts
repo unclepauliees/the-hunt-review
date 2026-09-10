@@ -68,6 +68,11 @@ async function addHero(slide: pptxgen.Slide, pptx: pptxgen, act: Act) {
   addImage(slide, await dataUri(asset("tagline-audio-2line.svg")), 1.12, 4.48, 2.45, .62, "contain", "A New Audio Thriller");
 }
 
+async function addReferenceSlide(slide: pptxgen.Slide, act: Act) {
+  if (!act.referenceImage) throw new Error(`Reference act ${act.id} is missing its slide image.`);
+  addImage(slide, await dataUri(asset(act.referenceImage)), 0, 0, W, H, "contain", act.headline);
+}
+
 async function addFullImageCaption(slide: pptxgen.Slide, pptx: pptxgen, act: Act) {
   addImage(slide, await dataUri(asset(act.image!)), 0, 0, W, H, "cover", act.headline);
   if (act.id === "arrival") {
@@ -214,6 +219,7 @@ async function addChecklist(slide: pptxgen.Slide, pptx: pptxgen, act: Act) {
 
 async function addAct(pptx: pptxgen, act: Act) {
   const slide = pptx.addSlide();
+  if (act.kind === "reference") return addReferenceSlide(slide, act);
   if (act.kind === "hero") return addHero(slide, pptx, act);
   const exportImage = exportImageForAct(act);
   if (exportImage && act.galleries?.length) return addGalleryExport(slide, pptx, act, exportImage);

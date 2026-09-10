@@ -1,0 +1,94 @@
+/* PDF revision: preserve the deck's materials while making each gallery a pinned scene. */
+.gallery-detail { padding: 0; background: var(--dracula-black); }
+.gallery-detail .gallery-detail-stage { width: 100%; height: 100dvh; max-height: none; display: block; overflow-y: auto; scroll-snap-type: y mandatory; }
+.gallery-detail .gallery-detail-figure { position: relative; display: block; width: 100%; height: 100dvh; scroll-snap-align: start; }
+.gallery-detail:not(.has-multiple) .gallery-detail-figure img, .gallery-detail.has-multiple .gallery-detail-figure img { width: 100%; max-width: none; height: 100%; max-height: none; object-fit: cover; border-radius: 0; box-shadow: none; }
+.gallery-detail .gallery-detail-labels { position: absolute; z-index: 1; left: 24px; bottom: 68px; }
+.gallery-detail .gallery-detail-figure figcaption { position: absolute; z-index: 1; bottom: 0; left: 0; width: 100%; padding: 18px 24px; margin: 0; background: rgba(23,27,27,.85); color: var(--sand); text-align: left; letter-spacing: 0; }
+.revised-gallery { padding: 0; overflow: visible; }
+.gallery-sticky-stage { position: sticky; top: 0; height: 100svh; min-height: 650px; padding: 30px 0 20px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 20px; overflow: hidden; }
+.gallery-sticky-stage > .act-ground { opacity: .45; pointer-events: none; }
+.gallery-sticky-stage header { margin: 0 auto; width: 90%; padding: 0; }
+.gallery-sticky-stage header h2 { max-width: 100%; font-size: 34px; line-height: 1.12; letter-spacing: 0; text-transform: none; }
+.gallery-sticky-stage header p { max-width: 75ch; margin: 12px 0 0; font-size: 17px; line-height: 1.45; }
+.revised-gallery .elastic-gallery { width: 90%; height: 100%; min-height: 0; touch-action: pan-y; }
+.revised-gallery .elastic-item.is-active { flex: 7 1 0; }
+.revised-gallery .elastic-active-copy h3 { max-width: 30ch; font-size: 28px; letter-spacing: 0; line-height: 1.1; text-transform: none; }
+.revised-gallery .elastic-active-copy p { font-size: 16px; line-height: 1.45; }
+.revised-gallery .elastic-content { padding: 24px; }
+.revised-gallery .elastic-collapsed-title { font-size: 13px; letter-spacing: 0; }
+.revised-gallery .elastic-item:not(.is-active) .elastic-active-copy { visibility: hidden; }
+.revised-gallery .contain-panel.is-active > img { height: calc(100% - 112px); padding: 12px; }
+.revised-gallery .contain-panel .elastic-shade { display: none; }
+.revised-gallery .contain-panel.is-active .elastic-content { top: auto; height: 112px; padding: 12px 20px; justify-content: center; background: var(--dracula-black); }
+.revised-gallery .contain-panel .elastic-active-copy h3 { font-size: 22px; margin: 0 0 4px; text-shadow: none; }
+.revised-gallery .contain-panel .elastic-active-copy p { font-size: 14px; text-shadow: none; }
+.revised-gallery .elastic-cue { margin-top: 6px; letter-spacing: 0; }
+.revised-gallery .carousel-progress { position: relative; z-index: 3; width: 90%; margin: 0 auto; padding: 0; display: flex; justify-content: center; gap: 16px; }
+.revised-gallery .stamp { flex: 1 1 0; max-width: 190px; min-width: 0; gap: 8px; padding: 3px; }
+.stamp-mark { width: 48px; flex: 0 0 auto; border: 2px solid var(--bronze); border-radius: 46% 54% 48% 52% / 53% 46% 54% 47%; opacity: .75; box-shadow: inset 2px 3px 4px rgba(228,189,150,.25), inset -3px -4px 5px rgba(0,0,0,.65), 0 4px 7px rgba(0,0,0,.3); }
+.stamp-mark i { display: grid; place-items: center; width: 72%; border: 1px solid var(--sand); box-shadow: inset 1px 2px 3px rgba(0,0,0,.5); }
+.stamp-mark svg { width: 21px; height: 21px; color: var(--sand); stroke-width: 1.3; }
+.revised-gallery .stamp-label { color: var(--sand); font-size: 12px; line-height: 1.2; letter-spacing: 0; text-transform: none; text-align: center; min-height: 30px; overflow-wrap: anywhere; }
+.narrative-subheading { margin: 18px 0; font-size: 24px; font-weight: 400; line-height: 1.3; letter-spacing: 0; }
+#guest-flow .act-image { inset: 6% auto auto 6%; width: 43%; height: 88%; object-fit: contain; }
+#guest-flow .act-scrim { background: transparent; }
+#guest-flow .act-copy { left: 54%; width: 38%; }
+#guest-flow h2 { font-size: 48px; text-transform: none; letter-spacing: 0; }
+.arrival-act .narrative-subheading { font-size: 28px; }
+.hero-guide { width: 100%; align-items: flex-start; padding: 4%; text-align: left; background: none; }
+.hero-backdrop { display: none; }
+.hero-base { background: var(--dracula-black); }
+.hero-texture.cracks { opacity: .08; }
+.hero-texture.embers { opacity: .12; }
+.arrival-act .act-copy-motion { width: 92%; margin: auto; }
+.hero-bottom-copy { transform: none; align-items: flex-start; }
+.hero-date { width: auto; margin: 0; text-align: left; white-space: normal; font-size: 16px; letter-spacing: 0; }
+.hero-presented { left: 4%; top: 5%; font-size: 14px; letter-spacing: 0; }
+.hero-close .hero-guide { align-items: flex-start; justify-content: flex-end; padding: 0 8% 10%; background: none; }
+.hero-thanks { font-size: 64px; letter-spacing: 0; text-transform: none; margin: 0; }
+.page-rail a.is-active:not(:hover):not(:focus-visible) span { opacity: 0; visibility: hidden; }
+.structure-act h2, .premise-act h2, .corridor-act h2 { font-size: 56px; }
+.structure-act .bullet-groups li { font-size: 18px; line-height: 1.5; color: var(--sand); }
+.structure-act .bullet-groups li + li { margin-top: 6px; }
+.structure-act h2 { margin-bottom: 48px; }
+.reveal-act h2 { font-size: 64px; color: var(--sand); }
+@media (max-width: 767px) {
+  .gallery-sticky-stage { min-height: 0; height: 100svh; padding: 22px 0 16px; gap: 14px; }
+  .gallery-sticky-stage header, .revised-gallery .elastic-gallery, .revised-gallery .carousel-progress { width: calc(100% - 32px); }
+  .gallery-sticky-stage header h2 { font-size: 26px; }
+  .gallery-sticky-stage header p { font-size: 14px; margin-top: 8px; }
+  .revised-gallery .elastic-gallery { display: block; position: relative; }
+  .revised-gallery .elastic-item { position: absolute; inset: 0; width: 100%; height: 100%; visibility: hidden; pointer-events: none; }
+  .revised-gallery .elastic-item.is-active { visibility: visible; pointer-events: auto; }
+  .revised-gallery .elastic-active-copy { opacity: 1; transform: none; transition: none; }
+  .revised-gallery .elastic-content { padding: 18px; }
+  .revised-gallery .elastic-active-copy h3 { font-size: 26px; }
+  .revised-gallery .elastic-active-copy p { font-size: 15px; }
+  .revised-gallery .contain-panel.is-active > img { height: calc(100% - 116px); padding: 6px; }
+  .revised-gallery .contain-panel.is-active .elastic-content { height: 116px; padding: 12px; }
+  .revised-gallery .contain-panel .elastic-active-copy h3 { font-size: 19px; }
+  .revised-gallery .carousel-progress { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; overflow: visible; }
+  .revised-gallery .carousel-progress:has(> :last-child:nth-child(2)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .revised-gallery .stamp { width: 100%; max-width: none; gap: 5px; }
+  .stamp-mark { width: 40px; }
+  .revised-gallery .stamp-label { font-size: 11px; min-height: 27px; }
+  #guest-flow .narrative-sticky { display: flex; flex-direction: column; padding: 24px; height: auto; min-height: 100svh; }
+  #guest-flow .act-image { position: relative; inset: auto; width: 100%; height: 48svh; }
+  #guest-flow .act-copy { position: relative; inset: auto; transform: none; width: 100%; padding: 20px 0; }
+  #guest-flow h2, .structure-act h2, .premise-act h2, .corridor-act h2 { font-size: 36px; }
+  .narrative-subheading { font-size: 21px; }
+  .hero-thanks { font-size: 42px; }
+  .hero-date { font-size: 13px; }
+  .hero-presented { font-size: 12px; }
+  .hero-keyart-plane { inset: 25% 0 auto; aspect-ratio: 2400 / 1294; mask-image: none; -webkit-mask-image: none; transform: translate3d(0, calc(var(--hero-mobile-progress) * -5svh), 0) !important; }
+  .hero-stage { background-image: url('./assets/bg-04-16x9.jpg'); background-size: cover; }
+  .hero-base { opacity: .55; }
+  .hero-guide { padding-bottom: 18%; }
+  .reveal-act h2 { font-size: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .revised-gallery { min-height: 100svh !important; }
+  .gallery-sticky-stage { position: relative; }
+  .stamp-mark, .elastic-item, .elastic-item > img { transition: none; }
+}

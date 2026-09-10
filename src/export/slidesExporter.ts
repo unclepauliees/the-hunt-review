@@ -36,6 +36,14 @@ export async function exportToSlides() {
   const starterSlideId = presentation.slides?.[0]?.objectId as string | undefined;
   for (const act of acts) {
     const slideId = `act_${act.index}`;
+    if (act.kind === "reference") {
+      const requests: unknown[] = [
+        { createSlide: { objectId: slideId, slideLayoutReference: { predefinedLayout: "BLANK" } } },
+        { createImage: { url: slideAssetUrl(act.referenceImage!), elementProperties: { pageObjectId: slideId, size: { width: { magnitude: 720, unit: "PT" }, height: { magnitude: 405, unit: "PT" } }, transform: { scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, unit: "PT" } } } },
+      ];
+      await api(`https://slides.googleapis.com/v1/presentations/${presentation.presentationId}:batchUpdate`, token, { requests });
+      continue;
+    }
     const bgName = act.background === "keyart" ? "keyart-16x9.jpg" : `${act.background}-16x9.jpg`;
     const exportImage = exportImageForAct(act);
     const hasImage = Boolean(exportImage);

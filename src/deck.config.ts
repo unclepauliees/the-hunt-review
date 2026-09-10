@@ -6,6 +6,7 @@
  * Logo on art requires its supplied darken-blend shadow plate.
  * Key art is never filtered, recolored, blended, or transformed beyond uniform Y translation.
  * Tagline copy is fixed. Audible orange is reserved for the master Audible logo.
+ * Reference-flow approval drafts may use supplied PPT slide renders intact.
  */
 
 export interface GalleryImage {
@@ -26,7 +27,7 @@ export type Act = {
   id: string;
   index: number;
   chapter: string;
-  kind: "hero" | "narrative" | "carousel" | "venue" | "openItems";
+  kind: "hero" | "narrative" | "carousel" | "venue" | "openItems" | "reference";
   eyebrow?: string;
   headline: string;
   body?: string[];
@@ -35,100 +36,530 @@ export type Act = {
   galleries?: Gallery[];
   background: "keyart" | "bg-02" | "bg-03" | "bg-04";
   image?: string;
+  referenceImage?: string;
+  subheading?: string;
+  imageFit?: "cover" | "contain";
   stampIndex?: number;
   slideLayout: "hero" | "split" | "full-image-caption" | "two-column" | "grid-4" | "stat-block" | "checklist";
 };
 
+// Approved revision direction: PDF pages 1-21; page 22 specifies shared controls.
 export const acts: Act[] = [
-  { id: "cover", index: 1, chapter: "Presented by NowThis x Audible", kind: "hero", eyebrow: "PRESENTED BY NOWTHIS x AUDIBLE", headline: "THE HUNT", body: ["CAMPAIGN KICKOFF EXPERIENCE 2026"], background: "keyart", slideLayout: "hero" },
-  { id: "structure", index: 2, chapter: "Structure", kind: "narrative", headline: "How The\nNight Unfolds", background: "bg-02", slideLayout: "two-column", bullets: [
-    { label: "PART I — THE HUNT", items: ["Guests enter The Hunt and explore Dracula through hidden journal entries, immersive audio, and interactive discoveries throughout the venue."] },
-    { label: "PART II — THE REVEAL", items: ["One final discovery completes The Hunt and leads guests to Audible, where they can continue listening to uncover how Dracula ends."] },
-  ] },
-  { id: "premise", index: 3, chapter: "One Night Only", kind: "narrative", headline: "One Night Only", background: "bg-03", image: "env-portal.jpg", slideLayout: "split", body: ["For one night only, Audible transforms a chic New York venue into The Hunt. Drawn from the haunting pages of Dracula, the evening blends decadent dining, gothic luxury, and interactive storytelling into New York's most coveted invitation.", "A stylish New York venue is transformed into Dracula's dining room through candlelight, dramatic tablescapes, and lavish details inspired by gothic luxury. Fog creeping over the floors, dramatic lighting, and luxurious gothic touches leave no doubt where this evening is taking place."] },
-  { id: "arrival", index: 4, chapter: "Arrival", kind: "narrative", headline: "You May Enter", background: "bg-02", image: "env-carriage.jpg", slideLayout: "full-image-caption", body: ["Guests arrive by carriage to a landmarked 1767 carriage house. The original 18th-century hitching post still stands inside. This is not a set - it is the building the story would have chosen."], galleries: [
-    { title: "The Entrance", images: [
-      { src: "render-entrance.jpg", caption: "The transformed entrance", kind: "render" },
-      { src: "venue-entrance.jpg", caption: "The entrance today", kind: "venue" },
-    ] },
-  ] },
-  { id: "entrance-design", index: 5, chapter: "Entrance Design", kind: "carousel", headline: "Building The Threshold", background: "bg-03", slideLayout: "grid-4", cards: [
-    { badge: "EXPERIENCE", title: "Arrival Environment", body: "A candlelit reception environment introduces guests to the world of Dracula through velvet drapery, portrait mirrors, florals, and the first invitation to enter.", image: "entrance-environment.png" },
-    { badge: "GUEST FLOW", title: "Floor Plan", body: "The floor plan coordinates arrival, activation queues, the feast, portraits, aura readings, the library, and the customization station across the venue.", image: "entrance-floorplan.png", fit: "contain" },
-    { badge: "PRODUCTION", title: "Entrance Build Plan", body: "The entrance elevation, materials, lighting, branded banners, florals, and modular construction details translate the threshold concept into a buildable installation.", image: "entrance-buildplan.png", fit: "contain" },
-  ] },
-  { id: "corridor", index: 6, chapter: "Threshold", kind: "narrative", headline: "Into The Castle", background: "bg-03", image: "env-corridor.jpg", slideLayout: "split", body: ["Guests step into the Count's castle through a candlelit corridor, where flickering light and dramatic drapes blur the line between reality and Dracula's world.", "Audio clips from Audible's Dracula play, letting guests know they are entering his realm. They receive a wax-sealed envelope, seemingly created in another time and place."] },
-  { id: "map", index: 7, chapter: "The Invitation", kind: "narrative", headline: "Open If You Dare", background: "bg-02", image: "env-envelope.jpg", slideLayout: "full-image-caption", body: ["Inside each wax-sealed envelope is an illustrated map that lays out the evening, providing further instructions for The Hunt. As the night unfolds, the map becomes their guide, leading them to each immersive activation where they'll uncover clues, collect stamps, and piece together Dracula's story."], galleries: [
-    { title: "The Letter & The Map", images: [
-      { src: "graphic-letter-mechanic.jpg", caption: "Guest experience - tap to unlock", kind: "graphic" },
-      { src: "graphic-venue-map.jpg", caption: "Venue floor plan", kind: "graphic" },
-    ] },
-  ] },
-  { id: "dresscode", index: 8, chapter: "Guests", kind: "narrative", headline: "The Dress Code", background: "bg-03", slideLayout: "split", body: ["The Hunt invites guests to interpret Dracula through high fashion, embracing dramatic silhouettes, rich textures, and couture rooted in gothic glamour. Think modern vampire, not costume, where every look feels worthy of the front row."] },
-  { id: "menu", index: 9, chapter: "Dining", kind: "carousel", headline: "The Menu", background: "bg-03", slideLayout: "grid-4", cards: [
-    { badge: "TABLE", title: "The Grazing Table", body: "A dramatic grazing table reimagines Dracula through elevated bites featuring blood oranges, black cherries, dark chocolate, and other sophisticated nods to vampire lore. Each dish draws from iconic symbols and moments from the novel.", image: "env-grazing-table.jpg" },
-    { badge: "DRACULA", title: "Smoked Old Fashioned", body: "With blood orange.", image: "env-cocktails.jpg" },
-    { badge: "MINA", title: "Elderflower & Champagne Spritz", body: "", image: "env-cocktails.jpg" },
-    { badge: "LUCY", title: "Black Cherry Gin Cocktail", body: "", image: "env-cocktails.jpg" },
-  ], galleries: [
-    { title: "The Grazing Table", images: [
-      { src: "graphic-grazing-menu.jpg", caption: "Grazing table menu", kind: "graphic" },
-    ] },
-  ] },
-  { id: "atmosphere", index: 10, chapter: "Atmosphere", kind: "narrative", headline: "The Castle\nComes To Life", background: "bg-02", image: "env-tablescape.jpg", slideLayout: "two-column", bullets: [
-    { label: "THE TABLE BECOMES THE CENTERPIECE", items: ["Lavish tablescapes overflowing with moss, florals, and candlelight", "Hidden journal pages reveal forgotten moments from the novel before the investigation begins"] },
-    { label: "THE FEAST HAS A SOUNDTRACK", items: ["A live string quartet sets the tone as guests arrive and dine", "Immersive sound design fills the space with whispers, turning pages, church bells, and wolves", "Exclusive moments from Audible's narration drift through the dining room, surrounding guests with the voices of Dracula"] },
-  ], galleries: [
-    { title: "The Grand Feast", images: [
-      { src: "render-grand-feast.jpg", caption: "Grand feast render", kind: "render" },
-      { src: "render-grand-feast-alt.jpg", caption: "Alternate grand feast render", kind: "render" },
-      { src: "venue-grand-feast.jpg", caption: "The feast room today", kind: "venue" },
-    ] },
-  ] },
-  { id: "hunt", index: 11, chapter: "The Mechanic", kind: "narrative", headline: "The Hunt For Dracula", background: "bg-03", image: "env-stamp.jpg", slideLayout: "full-image-caption", body: ["Using the map they received upon arrival, guests must visit every activation hidden throughout the venue to piece together the answer. At each stop, they uncover a new part of the story through audio, prophecy, or visual clues and receive a custom blood-red Audible stamp marking their progress.", "Each clue reveals more. Each branded stamp brings them closer. Only guests who complete the entire Hunt and collect every stamp can unlock The Midnight Revelation."] },
-  { id: "activations", index: 12, chapter: "Four Activations", kind: "carousel", headline: "Four Clues", background: "bg-03", stampIndex: 4, slideLayout: "grid-4", cards: [
-    { badge: "DECODE", title: "The Mirrors", body: "Antique mirrors conceal messages and visual illusions within their reflections. Guests must determine which reflection reveals the hidden message. The message uncovers another piece of Dracula's fate.", image: "env-mirrors.jpg" },
-    { badge: "CAPTURE", title: "The Portrait Booth", body: "Guests step into the wine cellar's ornate Victorian portrait booth and become part of Dracula's world. Audio clips play as their portrait is captured. They must examine the finished portrait to uncover a hidden detail.", image: "render-wine-cellar.jpg", detailImages: [
-      { src: "render-wine-cellar.jpg", caption: "Portrait booth render", kind: "render" },
-      { src: "venue-wine-cellar.jpg", caption: "The wine cellar today", kind: "venue" },
-    ] },
-    { badge: "DIVINE", title: "The Aura Reading", body: "A dramatic aura reading captures the energy Dracula would see in you. Your aura reveals your fate: resistant to his influence, or dangerously easy to lure in. Guests leave with an aura portrait and personalized reading.", image: "env-aura.jpg" },
-    { badge: "LISTEN", title: "Dracula's Library", body: "Guests search Dracula's library for books that unlock immersive audio. Integrated speakers create intimate listening moments. Guests must listen closely to uncover the clue hidden within.", image: "render-library.jpg", detailImages: [
-      { src: "render-library.jpg", caption: "Library render", kind: "render" },
-      { src: "venue-library.jpg", caption: "The library today", kind: "venue" },
-    ] },
-  ] },
-  { id: "revelation", index: 13, chapter: "Completion", kind: "narrative", headline: "Four Clues. One Revelation.", background: "bg-02", stampIndex: 4, slideLayout: "two-column", body: ["In order to receive the final clue of the evening, guests must complete the\nfour Dracula experiences and receive their associated Audible stamps. Upon\ncompletion, guests display their stamped map and receive the final revelation."] },
-  { id: "reveal", index: 14, chapter: "The Midnight Revelation", kind: "narrative", headline: "The Reveal", background: "bg-04", image: "env-mirror-reveal.jpg", slideLayout: "full-image-caption", body: ["With all four tasks complete and their final stamp secured, guests unlock The Midnight Revelation: an ornate handheld mirror created exclusively for the evening.", "Hidden within the reflection is one final message: \"Not everything can be seen. Some things must be heard.\" A discreet QR leads guests to Audible, where they can listen to uncover Dracula's ending for themselves."], galleries: [
-    { title: "The Midnight Feast", images: [
-      { src: "render-midnight-feast.jpg", caption: "Midnight feast render", kind: "render" },
-      { src: "venue-midnight-feast.jpg", caption: "The room today", kind: "venue" },
-    ] },
-    { title: "The Gifting Suite", images: [
-      { src: "render-gift-box.jpg", caption: "Branded gift box", kind: "render", specLabel: "175 pcs" },
-      { src: "render-gifting-suite.jpg", caption: "Gifting suite render", kind: "render" },
-      { src: "venue-gifting-suite.jpg", caption: "The gifting suite today", kind: "venue" },
-    ] },
-  ] },
-  { id: "venue", index: 15, chapter: "Venue - Confirmed", kind: "venue", headline: "One if by Land, Two if by Sea", background: "bg-02", image: "env-venue-interior.jpg", slideLayout: "stat-block", body: ["17 Barrow St, New York, NY 10014", "Landmarked 1767 carriage house, formerly Aaron Burr's. Recognized for its classic menu, long history, and beautiful decor - often cited as the most romantic restaurant in New York City, and its old world touches fit the bill for Dracula.", "A barrel-vaulted stone tunnel runs from the building toward the old Hudson shoreline. Dracula arrives by sea. The passage is already there."], galleries: [
-    { title: "The Floor Plan", images: [
-      { src: "graphic-venue-map.jpg", caption: "Venue floor plan", kind: "graphic" },
-    ] },
-  ] },
-  { id: "open-items", index: 16, chapter: "For Discussion", kind: "openItems", headline: "Open Items", background: "bg-03", slideLayout: "checklist", body: [
-    "Audio integration - when and where clips play without disrupting the dining experience. Audio is mandatory to some extent; placement needs sign-off.",
-    "Leave-behind production - the branded gift box is specified at 175 pcs and carries the QR component. Confirm final contents and approval path.",
-    "Guest flow and throughput - the venue floor plan now maps activation zones. Model timed waves or staggered arrivals for the aura reading and portrait booth before final guest count.",
-    "Talent and performance involvement - none currently scoped beyond the string quartet. Confirm whether Bailey, Purnell, or the costumed grand-feast performance shown in the render is in play.",
-    "Date, final guest count, and budget band - date and budget are not yet set. Reconcile final guest count against the 175-box production quantity.",
-    "Key art motion treatment - confirm brand-team approval for scroll-based parallax on the delivered key art composition.",
-  ] },
-  { id: "keyart-close", index: 17, chapter: "Listen To The Darkness", kind: "hero", headline: "Listen To The Darkness", background: "keyart", slideLayout: "hero" },
+  {
+    "id": "cover",
+    "chapter": "Presented by NowThis x Audible",
+    "kind": "hero",
+    "eyebrow": "PRESENTED BY NOWTHIS x AUDIBLE",
+    "headline": "THE HUNT",
+    "body": [
+      "CAMPAIGN KICKOFF EXPERIENCE 2026"
+    ],
+    "background": "keyart",
+    "slideLayout": "hero",
+    "index": 1
+  },
+  {
+    "id": "structure",
+    "chapter": "Structure",
+    "kind": "narrative",
+    "headline": "How The\nNight Unfolds",
+    "background": "bg-02",
+    "slideLayout": "split",
+    "bullets": [
+      {
+        "label": "PART I - THE HUNT",
+        "items": [
+          "Guests enter The Hunt and explore Dracula through hidden journal entries, immersive audio, and interactive discoveries throughout the venue.",
+          "The Haunted Mirrors",
+          "Lucy's Wine Cellar",
+          "Jonathan's Library",
+          "Mina's Gifting Suite"
+        ]
+      },
+      {
+        "label": "PART II - THE REVEAL",
+        "items": [
+          "One final discovery completes The Hunt and leads guests to Mina's Gifting Suite, where they receive their eternal reward."
+        ]
+      }
+    ],
+    "index": 2
+  },
+  {
+    "id": "guest-flow",
+    "chapter": "Guest Flow",
+    "kind": "narrative",
+    "headline": "Dracula's Castle",
+    "background": "bg-03",
+    "slideLayout": "split",
+    "image": "revision-003.jpg",
+    "body": [
+      "For one night only, Audible transforms a chic New York venue into The Hunt. Drawn from the haunting pages of Dracula, the evening blends decadent dining, gothic luxury, and interactive storytelling into New York's most coveted invitation."
+    ],
+    "subheading": "One Night Only",
+    "imageFit": "contain",
+    "index": 3
+  },
+  {
+    "id": "premise",
+    "chapter": "One Night Only",
+    "kind": "narrative",
+    "headline": "One Night Only",
+    "background": "bg-03",
+    "slideLayout": "split",
+    "image": "env-portal.jpg",
+    "body": [
+      "For one night only, Audible transforms a chic New York venue into The Hunt. Drawn from the haunting pages of Dracula, the evening blends decadent dining, gothic luxury, and interactive storytelling into New York's most coveted invitation."
+    ],
+    "index": 4
+  },
+  {
+    "id": "arrival",
+    "chapter": "Arrival",
+    "kind": "narrative",
+    "headline": "You May Enter",
+    "background": "bg-03",
+    "slideLayout": "split",
+    "image": "render-entrance.jpg",
+    "subheading": "Exterior Entrance",
+    "index": 5
+  },
+  {
+    "id": "exterior-entrance",
+    "chapter": "Exterior Entrance",
+    "kind": "carousel",
+    "headline": "Exterior Entrance",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Before Build",
+        "badge": "Before Build",
+        "body": "",
+        "image": "revision-008.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "After Build",
+        "badge": "After Build",
+        "body": "",
+        "image": "revision-009.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 6
+  },
+  {
+    "id": "corridor",
+    "chapter": "Threshold",
+    "kind": "narrative",
+    "headline": "Into The Castle",
+    "background": "bg-03",
+    "slideLayout": "split",
+    "image": "env-corridor.jpg",
+    "body": [
+      "Guests step into the Count's castle through a candlelit corridor, where flickering light and dramatic drapes blur the line between reality and Dracula's world.",
+      "Audio clips from Audible's Dracula play, letting guests know they are entering his realm. They receive a wax-sealed envelope, seemingly created in another time and place."
+    ],
+    "index": 7
+  },
+  {
+    "id": "map",
+    "chapter": "The Invitation",
+    "kind": "narrative",
+    "headline": "Open If You Dare",
+    "background": "bg-02",
+    "slideLayout": "split",
+    "image": "env-envelope.jpg",
+    "body": [
+      "Inside each wax-sealed envelope is an illustrated map that lays out the evening, providing further instructions for The Hunt. As the night unfolds, the map becomes their guide, leading them to each immersive activation where they'll uncover clues, collect stamps, and piece together Dracula's story."
+    ],
+    "index": 8
+  },
+  {
+    "id": "letter",
+    "chapter": "A Letter From Dracula",
+    "kind": "carousel",
+    "headline": "A Letter From Dracula",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "A Letter From Dracula",
+        "badge": "A Letter From Dracula",
+        "body": "",
+        "image": "revision-012.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Tech Meets Immersion",
+        "badge": "Tech Meets Immersion",
+        "body": "",
+        "image": "revision-013.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 9
+  },
+  {
+    "id": "activations",
+    "chapter": "Four Clues",
+    "kind": "carousel",
+    "headline": "Four Clues",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "The Haunted Mirrors",
+        "badge": "The Haunted Mirrors",
+        "body": "Antique mirrors conceal messages and visual illusions within their reflections. Guests must determine which reflection reveals the hidden message. The message uncovers another piece of Dracula's fate.",
+        "image": "env-mirrors.jpg",
+        "fit": "cover"
+      },
+      {
+        "title": "Lucy's Wine Cellar",
+        "badge": "Lucy's Wine Cellar",
+        "body": "Guests step into the wine cellar's ornate Victorian portrait set and become part of Dracula's world. Audio clips play as their portrait is captured. They must examine the room to uncover a hidden detail.",
+        "image": "render-wine-cellar.jpg",
+        "fit": "cover"
+      },
+      {
+        "title": "Jonathan's Library",
+        "badge": "Jonathan's Library",
+        "body": "A candlelit library invites guests to explore Jonathan Harker's world - discovering hidden clues, curious artifacts, and fragments of the story tucked among the shelves.",
+        "image": "render-library.jpg",
+        "fit": "cover"
+      },
+      {
+        "title": "Van Helsing's Reading",
+        "badge": "Van Helsing's Reading",
+        "body": "A dramatic aura reading captures the energy Dracula would see in you. Your aura reveals your fate: resistant to his influence, or dangerously easy to lure in. Guests leave with an aura reading.",
+        "image": "env-aura.jpg",
+        "fit": "cover"
+      },
+      {
+        "title": "How It Works",
+        "badge": "How It Works",
+        "body": "",
+        "image": "revision-020.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 10
+  },
+  {
+    "id": "haunted-mirrors",
+    "chapter": "The Entrance + Haunted Mirrors",
+    "kind": "carousel",
+    "headline": "The Entrance + Haunted Mirrors",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Before Build",
+        "badge": "Before Build",
+        "body": "",
+        "image": "revision-022.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Entrance + Mirrors",
+        "badge": "Entrance + Mirrors",
+        "body": "",
+        "image": "revision-023.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 11
+  },
+  {
+    "id": "midnight-feast",
+    "chapter": "The Midnight Feast",
+    "kind": "carousel",
+    "headline": "The Midnight Feast",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Before Build",
+        "badge": "Before Build",
+        "body": "",
+        "image": "revision-026.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Midnight Feast",
+        "badge": "Midnight Feast",
+        "body": "",
+        "image": "revision-025.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Midnight Feast + Mina Ballerina",
+        "badge": "Midnight Feast + Mina Ballerina",
+        "body": "",
+        "image": "revision-027.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 12
+  },
+  {
+    "id": "food-beverage",
+    "chapter": "Food & Beverage",
+    "kind": "carousel",
+    "headline": "Food & Beverage",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Food Menu",
+        "badge": "Food Menu",
+        "body": "",
+        "image": "revision-029.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Cocktail Menu",
+        "badge": "Cocktail Menu",
+        "body": "",
+        "image": "revision-030.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 13
+  },
+  {
+    "id": "wine-cellar",
+    "chapter": "Lucy's Wine Cellar",
+    "kind": "carousel",
+    "headline": "Lucy's Wine Cellar",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Before",
+        "badge": "Before",
+        "body": "",
+        "image": "revision-032.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Lucy's Wine Cellar + Portrait Studio",
+        "badge": "Lucy's Wine Cellar + Portrait Studio",
+        "body": "",
+        "image": "revision-033.jpg",
+        "fit": "contain"
+      }
+    ],
+    "body": [
+      "Staged as a Victorian portrait, modernized by a photographer. The photos will be uploaded on the app."
+    ],
+    "index": 14
+  },
+  {
+    "id": "library",
+    "chapter": "Jonathan's Library + Van Helsing's Reading",
+    "kind": "carousel",
+    "headline": "Jonathan's Library + Van Helsing's Reading",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Before",
+        "badge": "Before",
+        "body": "",
+        "image": "revision-035.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Jonathan's Library + Van Helsing's Reading",
+        "badge": "Jonathan's Library + Van Helsing's Reading",
+        "body": "",
+        "image": "revision-036.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 15
+  },
+  {
+    "id": "gifting-suite",
+    "chapter": "Mina's Gifting Suite",
+    "kind": "carousel",
+    "headline": "Mina's Gifting Suite",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Before",
+        "badge": "Before",
+        "body": "",
+        "image": "revision-038.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Mina's Gifting Suite",
+        "badge": "Mina's Gifting Suite",
+        "body": "",
+        "image": "revision-039.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Mina's Gift",
+        "badge": "Mina's Gift",
+        "body": "",
+        "image": "revision-040.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 16
+  },
+  {
+    "id": "performers",
+    "chapter": "Performers",
+    "kind": "carousel",
+    "headline": "Performers",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Harpist",
+        "badge": "Harpist",
+        "body": "",
+        "image": "revision-042.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Actors",
+        "badge": "Actors",
+        "body": "",
+        "image": "revision-043.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Dracula (Pianist)",
+        "badge": "Dracula (Pianist)",
+        "body": "",
+        "image": "revision-044.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Mina (Ballerina)",
+        "badge": "Mina (Ballerina)",
+        "body": "",
+        "image": "revision-045.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 17
+  },
+  {
+    "id": "reveal",
+    "chapter": "Hero Props",
+    "kind": "narrative",
+    "headline": "The Secrets Will Be Revealed",
+    "background": "bg-04",
+    "slideLayout": "split",
+    "image": "env-mirror-reveal.jpg",
+    "subheading": "Hero Props",
+    "index": 18
+  },
+  {
+    "id": "hero-props",
+    "chapter": "Hero Props - Reveals",
+    "kind": "carousel",
+    "headline": "Hero Props - Reveals",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Jonathan's Book",
+        "badge": "Jonathan's Book",
+        "body": "",
+        "image": "revision-048.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Large Book",
+        "badge": "Large Book",
+        "body": "",
+        "image": "revision-049.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Life Size Reference",
+        "badge": "Life Size Reference",
+        "body": "",
+        "image": "revision-050.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Castle Key",
+        "badge": "Castle Key",
+        "body": "Revealed in the mirror room.",
+        "image": "revision-051.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Large Chess Piece",
+        "badge": "Large Chess Piece",
+        "body": "Revealed in Lucy's Wine Cellar on a statue bust.",
+        "image": "revision-052.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Candlestick Phone",
+        "badge": "Candlestick Phone",
+        "body": "Revealed at the aura reading table.",
+        "image": "revision-053.jpg",
+        "fit": "contain"
+      }
+    ],
+    "index": 19
+  },
+  {
+    "id": "signage",
+    "chapter": "Signage",
+    "kind": "carousel",
+    "headline": "Signage",
+    "background": "bg-03",
+    "slideLayout": "grid-4",
+    "cards": [
+      {
+        "title": "Blue Set",
+        "badge": "Blue Set",
+        "body": "",
+        "image": "revision-055.jpg",
+        "fit": "contain"
+      },
+      {
+        "title": "Red Set",
+        "badge": "Red Set",
+        "body": "",
+        "image": "revision-056.jpg",
+        "fit": "contain"
+      }
+    ],
+    "body": [
+      "Signage will be blue or red, depending on the design of the rooms it's in."
+    ],
+    "index": 20
+  },
+  {
+    "id": "keyart-close",
+    "chapter": "Thanks",
+    "kind": "hero",
+    "headline": "Thanks",
+    "background": "keyart",
+    "slideLayout": "hero",
+    "index": 21
+  }
 ];
 
 export const activationLabels = ["Decode", "Capture", "Divine", "Listen"];
 export const venueStats = ["130 SEATED", "200 COCKTAIL", "3 ROOMS, PIPED SOUND", "PRIVATE GARDEN", "CLOSED MONDAYS - AVAILABLE FOR PRIVATE EVENTS"];
 
 export function exportImageForAct(act: Act) {
+  if (act.kind === "reference" && act.referenceImage) return { src: act.referenceImage, caption: act.headline, kind: "graphic" as const };
   return act.galleries?.[0]?.images[0] ?? (act.image ? { src: act.image, caption: act.headline, kind: "render" as const } : null);
 }

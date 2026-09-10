@@ -6,8 +6,8 @@ import { NarrativeAct } from "./components/deck/NarrativeAct";
 import { CarouselAct } from "./components/deck/CarouselAct";
 import { VenueAct } from "./components/deck/VenueAct";
 import { OpenItemsAct } from "./components/deck/OpenItemsAct";
-import { ExportControls } from "./components/deck/ExportControls";
 import { RevealAct } from "./components/deck/RevealAct";
+import { ReferenceAct } from "./components/deck/ReferenceAct";
 
 const comparisonPlates = ["../assets/plates/hero-keyart.png", "../assets/plates/audio-tagline.png"];
 void comparisonPlates;
@@ -18,6 +18,7 @@ export default function App() {
       <main aria-label="The Hunt campaign presentation">
         <h1 className="sr-only">The Hunt campaign presentation</h1>
         {acts.map((act) => {
+          if (act.kind === "reference") return <ReferenceAct key={act.id} act={act} />;
           if (act.kind === "hero") return <HeroAct key={act.id} act={act} />;
           if (act.kind === "carousel") return <CarouselAct key={act.id} act={act} />;
           if (act.id === "reveal") return <RevealAct key={act.id} act={act} />;
@@ -27,7 +28,6 @@ export default function App() {
         })}
       </main>
       <ProgressRail />
-      <ExportControls />
     </LenisProvider>
   );
 }

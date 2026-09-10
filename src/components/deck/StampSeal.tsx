@@ -9,8 +9,9 @@ export function StampSeal({ label, active = false, onActivate }: { label: string
       onFocus={onActivate}
       onClick={onActivate}
     >
-      <span className="stamp-mark" aria-hidden="true"><i /></span>
+      <span className="stamp-mark" aria-hidden="true"><i><Flame /></i></span>
       <span className="stamp-label">{label}</span>
     </button>
   );
 }
+import Flame from "lucide-react/dist/esm/icons/flame";

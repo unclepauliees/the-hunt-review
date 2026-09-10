@@ -180,6 +180,11 @@ h2 { max-width: 18ch; margin: 0 0 1.7rem; color: var(--sand); font-size: var(--t
 .stamp:hover .stamp-mark, .stamp:focus-visible .stamp-mark { opacity: 1; transform: scale(1); border-color: var(--sand); }
 .stamp:focus-visible { outline: 1px solid var(--sand); outline-offset: 8px; border-radius: 2px; }
 
+.reference-act { position: relative; min-height: 100vh; padding: 12px; display: grid; place-items: center; background: var(--dracula-black); scroll-snap-align: start; }
+.reference-stage { width: min(calc((100vh - 24px) * 16 / 9), calc(100vw - 24px)); max-width: calc(100vw - 24px); aspect-ratio: 16 / 9; display: grid; place-items: center; overflow: hidden; background: #050707; }
+.reference-slide-image { width: 100%; height: 100%; object-fit: contain; }
+.reference-act-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
 .act-galleries { position: relative; z-index: 4; width: 100%; padding: clamp(3.5rem, 7vw, 7rem) 0 clamp(4rem, 8vw, 8rem); display: grid; gap: clamp(3rem, 6vw, 6rem); background: linear-gradient(180deg, var(--dracula-black), #111515 52%, var(--dracula-black)); }
 .narrative-act .act-galleries { margin: 0 -12px -12px; }
 .carousel-act .act-galleries { padding-top: clamp(2rem, 4vw, 4rem); }

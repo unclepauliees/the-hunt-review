@@ -43,6 +43,7 @@ export function ElasticGallery({ cards = [], gallery, activeIndex, onActiveChang
   const [detailIndex, setDetailIndex] = useState<number | null>(null);
   const detailRef = useRef<HTMLDivElement | null>(null);
   const detailTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
   const panels = useMemo<GalleryPanel[]>(() => {
     if (gallery) {
       return gallery.images.map((image) => ({
@@ -128,29 +129,34 @@ export function ElasticGallery({ cards = [], gallery, activeIndex, onActiveChang
   };
 
   return (
-    <div className={`elastic-gallery ${gallery ? "is-image-gallery" : ""}`} aria-label={gallery?.title ?? "Image gallery"}>
+    <div className={`elastic-gallery ${gallery ? "is-image-gallery" : ""}`} aria-label={gallery?.title ?? "Image gallery"}
+      onTouchStart={(event) => { touchStart.current = { x: event.touches[0].clientX, y: event.touches[0].clientY }; }}
+      onTouchEnd={(event) => {
+        if (!touchStart.current) return;
+        const dx = event.changedTouches[0].clientX - touchStart.current.x;
+        const dy = event.changedTouches[0].clientY - touchStart.current.y;
+        touchStart.current = null;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) activate(Math.max(0, Math.min(panels.length - 1, active + (dx < 0 ? 1 : -1))));
+      }}>
       {panels.map((panel, index) => {
         const isActive = active === index;
         return (
           <article
             key={panel.key}
-            className={`elastic-item ${isActive ? "is-active" : ""} ${panel.kind ? `is-${panel.kind}` : ""}`}
-            onPointerEnter={(event) => activateFromPointer(event.target, index)}
-            onPointerMove={(event) => activateFromPointer(event.target, index)}
-            onMouseEnter={(event) => activateFromPointer(event.target, index)}
-            onMouseMove={(event) => activateFromPointer(event.target, index)}
+            className={`elastic-item ${isActive ? "is-active" : ""} ${panel.fit === "contain" ? "contain-panel" : ""} ${panel.kind ? `is-${panel.kind}` : ""}`}
+            onPointerEnter={(event) => { if (event.pointerType === "mouse") activateFromPointer(event.target, index); }}
           >
             <img className={panel.fit === "contain" ? "is-contain" : ""} src={asset(panel.image)} alt="" />
             <div className="elastic-shade" aria-hidden="true" />
-            <button className="elastic-panel-trigger" type="button" aria-label={`Show ${panel.title}`} aria-pressed={isActive} onMouseEnter={() => activate(index)} onFocus={() => activate(index)} onClick={() => activate(index)} />
+            <button className="elastic-panel-trigger" type="button" tabIndex={isActive ? 0 : -1} aria-label={`Show ${panel.title}`} aria-pressed={isActive} onFocus={() => activate(index)} onClick={() => activate(index)} />
             <div className="elastic-content">
               <div className="elastic-active-copy">
-                <span className={`elastic-label ${panel.kind ? `is-${panel.kind}` : ""}`}>{panel.label}</span>
+                {panel.label !== panel.title && <span className={`elastic-label ${panel.kind ? `is-${panel.kind}` : ""}`}>{panel.label}</span>}
                 {panel.specLabel && <span className="elastic-spec">{panel.specLabel}</span>}
                 <h3>{panel.title}</h3>
                 {panel.body && <p>{panel.body}</p>}
-                <button className="elastic-cue" type="button" onClick={(event) => openDetail(index, event.currentTarget)}>
-                  Explore Detail <ArrowUpRight />
+                <button className="elastic-cue" type="button" tabIndex={isActive ? 0 : -1} onClick={(event) => openDetail(index, event.currentTarget)}>
+                  Click to Expand <ArrowUpRight />
                 </button>
               </div>
               {gallery && !isActive && (

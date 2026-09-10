@@ -12,7 +12,7 @@ export function NarrativeAct({ act }: { act: Act }) {
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: root, offset: ["start start", "end end"] });
   const copyX = useTransform(scrollYProgress, [0, .18, .72, 1], [32, 0, 0, -20]);
-  const opacity = useTransform(scrollYProgress, [0, .12, .72, .92, 1], [0, 1, 1, .18, 0]);
+  const opacity = useTransform(scrollYProgress, [0, .12, .72, .92, 1], [1, 1, 1, .7, .5]);
   const imageScale = useTransform(scrollYProgress, [.55, 1], [1, .88]);
   const hasGalleries = Boolean(act.galleries?.length);
 
@@ -27,6 +27,7 @@ export function NarrativeAct({ act }: { act: Act }) {
             <motion.div style={reduce ? undefined : { x: copyX, opacity }} className="act-copy-motion">
               <p className="act-marker">{act.chapter}</p>
               <h2>{act.headline}</h2>
+              {act.subheading && <h3 className="narrative-subheading">{act.subheading}</h3>}
               {act.body?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               {act.bullets && <div className="bullet-groups">{act.bullets.map((group) => <div key={group.label}><h3>{group.label}</h3><ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}</div>}
               {act.stampIndex === 4 && <div className="completed-stamps">{activationLabels.map((label) => <StampSeal key={label} label={label} active />)}</div>}
