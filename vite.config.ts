@@ -5,10 +5,8 @@ import { viteSingleFile } from "vite-plugin-singlefile";
 import { renameSync, writeFileSync } from "node:fs";
 
 const previewDescription = "A cinematic NowThis x Audible presentation for The Hunt, an immersive Bram Stoker's Dracula guest experience.";
-const shareImageVersion = "20260909-ios";
 const siteUrl = "https://draculadeck.com";
-const shareImageUrl = `${siteUrl}/social-thumbnail.jpg?v=${shareImageVersion}`;
-const squareShareImageUrl = `${siteUrl}/social-thumbnail-square.jpg?v=${shareImageVersion}`;
+const shareImageUrl = `${siteUrl}/social-thumbnail-ios.jpg`;
 
 const previewIndexHtml = `<!doctype html>
 <html lang="en">
@@ -40,11 +38,6 @@ const previewIndexHtml = `<!doctype html>
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Bram Stoker's Dracula key art for The Hunt presentation." />
-    <meta property="og:image" content="${squareShareImageUrl}" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="1200" />
-    <meta property="og:image:alt" content="A close-cropped Bram Stoker's Dracula key art portrait." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="${siteUrl}/" />
     <meta name="twitter:title" content="The Hunt | NowThis x Audible" />
@@ -63,7 +56,10 @@ const previewIndexHtml = `<!doctype html>
     </style>
   </head>
   <body>
-    <a href="/the-hunt.html">Open The Hunt</a>
+    <a href="/the-hunt.html">
+      <img src="/social-thumbnail-ios.jpg" alt="Bram Stoker's Dracula key art for The Hunt presentation." width="1200" height="630" />
+      <span>Open The Hunt</span>
+    </a>
   </body>
 </html>
 `;

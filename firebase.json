@@ -38,6 +38,15 @@
         ]
       },
       {
+        "source": "/social-thumbnail-ios.jpg",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=60"
+          }
+        ]
+      },
+      {
         "source": "/social-thumbnail-square.jpg",
         "headers": [
           {
